@@ -1,3 +1,5 @@
 [project]
 game="/Volumes/TrascendSSD/Warcraft III/Warcraft III 1.26a Full (EN)"
-sources=*.w3x
+
+[map]
+root=LG_0.911opt.w3x

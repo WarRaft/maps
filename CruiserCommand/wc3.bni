@@ -1,3 +1,5 @@
 [project]
 game="/Volumes/TrascendSSD/Warcraft III/Warcraft III 1.26a Full (EN)"
-sources=*.w3x
+
+[map]
+root=CruiserCommandRU_4.1.2.1_stand.w3x
