@@ -1,0 +1,19 @@
+[trigger]
+name="Renegade Merchant"
+description=""
+action=DisableTrigger(GetTriggeringTrigger())
+action=TriggerSleepAction("0.50")
+action=QuestMessageBJ($Players, QuestMessageTypeAlwaysHint, $TEXT_Hint["16"])
+action=CreateNUnitsAtLoc("1", "u004", PlayerNP, GetRectCenter($gg_rct_REG_Renegade_Merchant_Start), "240.00")
+action=SetVariable($UNIT_Merchant, GetLastCreatedUnit())
+action=IssuePointOrderLoc($UNIT_Merchant, UnitOrderMove, GetRectCenter($gg_rct_REG_Renegade_Merchant_Point))
+action=AddTriggerEvent($gg_trg_Death_of_Merchant, event:TriggerRegisterUnitEvent($UNIT_Merchant, UnitEventDeath) ~"")
+action=AddTriggerEvent($gg_trg_Attack_of_Merchant, event:TriggerRegisterUnitEvent($UNIT_Merchant, UnitEventDamaged) ~"")
+action=TriggerSleepAction("1.00")
+action=SetUnitFacingTimed($UNIT_Merchant, "270.00", "0.30")
+action=VolumeGroupSetVolumeBJ(VolumeGroupUnitSounds, "0.00")
+action=TriggerSleepAction("0.30")
+action=TransmissionFromUnitWithNameBJ(GetPlayersAll(), $UNIT_Merchant, GetUnitName($UNIT_Merchant), $gg_snd_Acolyte01, "TRIGSTR_1707", AddSetToSet, "22.00", WaitDontDont)
+action=TriggerSleepAction("25.00")
+action=VolumeGroupSetVolumeBJ(VolumeGroupUnitSounds, "100.00")
+event=TriggerRegisterDeathEvent($gg_dest_LOcg_1738)

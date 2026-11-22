@@ -1,0 +1,19 @@
+[trigger]
+name="Security1"
+description=""
+action=CustomScriptCode("call TeoPortalRevival(18)")
+action=CreateNUnitsAtLoc("1", "n016", PlayerNA, GetRectCenter($gg_rct_REG_Portal18), "0.00")
+action=IssuePointOrderLoc(GetLastCreatedUnit(), UnitOrderAttack, GetRectCenter($gg_rct_REG_Security_Attack_Point1))
+action=TriggerSleepAction("0.30")
+action=CreateNUnitsAtLoc("1", "n014", PlayerNA, GetRectCenter($gg_rct_REG_Portal18), "0.00")
+action=IssuePointOrderLoc(GetLastCreatedUnit(), UnitOrderAttack, GetRectCenter($gg_rct_REG_Security_Attack_Point1))
+action=TriggerSleepAction("0.30")
+action=CreateNUnitsAtLoc("1", "n01A", PlayerNA, GetRectCenter($gg_rct_REG_Portal18), "0.00")
+action=IssuePointOrderLoc(GetLastCreatedUnit(), UnitOrderAttack, GetRectCenter($gg_rct_REG_Security_Attack_Point1))
+action=SetUnitColor(GetLastCreatedUnit(), Color11)
+action=TriggerSleepAction("1.00")
+action=CreateNUnitsAtLoc("1", "u002", PlayerNA, GetRectCenter($gg_rct_REG_Portal18), "0.00")
+action=IssuePointOrderLoc(GetLastCreatedUnit(), UnitOrderMove, GetRectCenter($gg_rct_REG_Security_Attack_Point2))
+action=SetUnitManaPercentBJ(GetLastCreatedUnit(), "100")
+action=SetUnitColor(GetLastCreatedUnit(), Color06)
+action=KillDestructable(LoadDestructableHandleBJ("18", "1", GetLastCreatedHashtableBJ()))

@@ -1,0 +1,22 @@
+[trigger]
+name="Destroying Barrel"
+description=""
+event=TriggerRegisterDestDeathInRegionEvent($gg_rct_REG_Barrels)
+event=TriggerRegisterDeathEvent($gg_dest_LTex_3300)
+event=TriggerRegisterDeathEvent($gg_dest_LTex_3301)
+event=TriggerRegisterDeathEvent($gg_dest_LTex_7329)
+action=CustomScriptCode("local unit dummy_unit")
+action=CustomScriptCode("local destructable barrel = GetDyingDestructable()")
+action=CustomScriptCode("local real x = GetDestructableX(barrel)")
+action=CustomScriptCode("local real y = GetDestructableY(barrel)")
+action=TriggerSleepAction("0.20")
+action=CommentString("Проверка на уничтожение ключевой бочки")
+action=CustomScriptCode("if ( barrel == gg_dest_LTex_1000  ) then")
+action=CustomScriptCode("    call DisableTrigger( gg_trg_Fire2 )")
+action=CustomScriptCode("endif")
+action=CommentString("Взрыв бочки")
+action=CustomScriptCode("set dummy_unit = TeoCreateDummyUnit( Player(PLAYER_NEUTRAL_PASSIVE), 'n00X', x, y, 'A02D' )")
+action=CustomScriptCode("call IssuePointOrder( dummy_unit, \"flamestrike\", x, y )")
+action=CustomScriptCode("set dummy_unit = null")
+action=CustomScriptCode("set barrel = null")
+condition=OperatorCompareDestructableCode(GetDestructableTypeId(GetDyingDestructable()), OperatorEqualENE, "LTex")

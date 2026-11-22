@@ -1,0 +1,22 @@
+[trigger]
+name="WaterGuard Security"
+description=""
+action=CustomScriptCode("local unit new_unit")
+action=IfThenElseMultiple()
+>action:1=CustomScriptCode("set new_unit = TeoCreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), 'n02X', -1210, -12400, 180 )")
+>action:1=CustomScriptCode("call UnitApplyTimedLife( new_unit, 'BTLF', 300 )")
+>action:1=CustomScriptCode("call GroupAddUnitSimple( new_unit, udg_WaterGuard_Worker )")
+>action:1=CommentString("Создание эффекта появления")
+>action:1=CustomScriptCode("call DestroyEffect( AddSpecialEffect( \"Abilities\\\\Spells\\\\Orc\\\\FeralSpirit\\\\feralspirittarget.mdl\", GetUnitX(new_unit), GetUnitY(new_unit) ) )")
+>condition:0=OperatorCompareInteger(CountUnitsInGroup($WaterGuard_Worker), OperatorLessEq, "1")
+action=IfThenElseMultiple()
+>action:1=CustomScriptCode("set new_unit = TeoCreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), 'n02Y', -2640, -12400, 0 )")
+>action:1=CustomScriptCode("call UnitApplyTimedLife( new_unit, 'BTLF', 300 )")
+>action:1=CustomScriptCode("call GroupAddUnitSimple( new_unit, udg_WaterGuard_Warrior )")
+>action:1=CommentString("Создание эффекта появления")
+>action:1=CustomScriptCode("call DestroyEffect( AddSpecialEffect( \"Abilities\\\\Spells\\\\Orc\\\\FeralSpirit\\\\feralspirittarget.mdl\", GetUnitX(new_unit), GetUnitY(new_unit) ) )")
+>condition:0=OperatorCompareInteger(CountUnitsInGroup($WaterGuard_Warrior), OperatorLessEq, "1")
+action=CommentString("Обнуление переменных")
+action=CustomScriptCode("set new_unit = null")
+condition=OperatorCompareBoolean(IsUnitAliveBJ($UNIT_WaterGuard), OperatorEqualENE, "true")
+event=TriggerRegisterTimerEventPeriodic("3.00")

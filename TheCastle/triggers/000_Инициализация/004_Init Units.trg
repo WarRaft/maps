@@ -1,0 +1,22 @@
+[trigger]
+name="Init Units"
+description=""
+initially_off=1
+action=SetVariable($UNIT_FS_Dummy, $gg_unit_n00L_0163)
+action=SetVariable($UNIT_Traveler, $gg_unit_n01M_0377)
+action=SetVariable($UNIT_Lizard, $gg_unit_n00Q_0379)
+action=SetVariable($UNIT_Marauder, $gg_unit_n01P_0376)
+action=SetVariable($UNIT_Overseer, $gg_unit_n003_0011)
+action=SetVariable($UNIT_Devouer, $gg_unit_u003_0242)
+action=SetVariable($UNIT_Boss1, $gg_unit_N009_0063)
+action=SetVariable($UNIT_Boss2, $gg_unit_n00P_0169)
+action=SetVariable($UNIT_Robot, $gg_unit_n006_0049)
+action=SetVariable($UNIT_Devastator, $gg_unit_n00E_0121)
+action=SetVariable($UNIT_Naga, $gg_unit_N00T_0154)
+action=SetVariable($UNIT_HellishCreature, $gg_unit_n02R_0577)
+action=SetUnitUserData($UNIT_HellishCreature, "1")
+action=SetVariable($UNIT_Prisoner, $gg_unit_n02B_0490)
+action=SetVariable($UNIT_Skeleton_merchant, $gg_unit_u00E_0602)
+action=SetVariable($UNIT_WaterGuard, $gg_unit_n00G_0367)
+action=SetVariable($UNIT_EarthGuard, $gg_unit_e000_0040)
+action=SetVariable($UNIT_Boss3_Archmage, $gg_unit_U009_0373)

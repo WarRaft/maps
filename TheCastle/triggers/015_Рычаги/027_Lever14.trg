@@ -1,0 +1,23 @@
+[trigger]
+name="Lever14"
+description=""
+action=ForLoopVarMultiple($N, "1", $All_Items_num)
+>action:0=IfThenElseMultiple()
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette01), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette02), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette03), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette04), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette05), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette06), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette09), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette11), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette12), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette13), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette14), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($All_Items[$N], $gg_rct_REG_Statuette16), OperatorEqualENE, "false")
+>>action:2=SetVariable($Wrong_Place_for_Item, "true")
+>>action:2=TriggerExecute($gg_trg_Lever14_Activation)
+>>action:1=SetVariable($Wrong_Place_for_Item, "false")
+>>action:2=ReturnAction()
+action=TriggerExecute($gg_trg_Lever14_Activation)
+event=TriggerRegisterDeathEvent($gg_dest_B00E_3153)

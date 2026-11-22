@@ -1,3 +1,6 @@
 [project]
 game="/Volumes/TrascendSSD/Warcraft III/Warcraft III 1.26a Full (EN)"
 game=/Volumes/TrascendSSD/UJAPI
+
+[code]
+sources=triggers/

@@ -1,0 +1,22 @@
+[trigger]
+name="Labyrinth Buttons Checking"
+description=""
+initially_off=1
+action=IfThenElseMultiple()
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button7_Entrance)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button7_Exit)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button8_Entrance)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button8_Exit)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button9_Entrance)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button9_Exit)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button10_Entrance)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button10_Exit)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button_with_Item)
+>action:1=DisableTrigger($gg_trg_Labyrinth_Button_without_Item)
+>action:1=CommentString("Открываем портал № 4")
+>action:1=CustomScriptCode("call TeoPortalRevival(4)")
+>condition:0=AndMultiple()
+>>condition:0=OperatorCompareBoolean(IsDestructableAliveBJ($Button["7"]), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(IsDestructableAliveBJ($Button["8"]), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(IsDestructableAliveBJ($Button["9"]), OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean(IsDestructableAliveBJ($Button["10"]), OperatorEqualENE, "false")

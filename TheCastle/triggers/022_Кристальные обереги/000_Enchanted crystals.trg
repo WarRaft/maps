@@ -1,0 +1,23 @@
+[trigger]
+name="Enchanted crystals"
+description=""
+action=IfThenElseMultiple()
+>action:1=KillUnit($gg_unit_n01X_0374)
+>condition:0=OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $gg_unit_n01U_0363)
+action=IfThenElseMultiple()
+>action:1=KillUnit($gg_unit_n01W_0365)
+>action:1=KillDestructable($gg_dest_B00S_9583)
+>condition:0=OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $gg_unit_n01Y_0364)
+action=IfThenElseMultiple()
+>action:1=KillUnit($gg_unit_n01V_0397)
+>condition:0=OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $gg_unit_n01Z_0199)
+action=IfThenElseMultiple()
+>action:1=KillUnit($gg_unit_n01X_0311)
+>condition:0=OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $gg_unit_n01U_0206)
+action=IfThenElseMultiple()
+>action:1=KillUnit($gg_unit_n01W_0427)
+>condition:0=OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $gg_unit_n01Y_0405)
+action=IfThenElseMultiple()
+>action:1=KillUnit($gg_unit_n01W_0393)
+>condition:0=OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $gg_unit_n01Y_0396)
+event=TriggerRegisterAnyUnitEventBJ(PlayerUnitEventDeath)

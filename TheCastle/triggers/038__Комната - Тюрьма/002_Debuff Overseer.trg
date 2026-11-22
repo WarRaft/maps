@@ -1,0 +1,25 @@
+[trigger]
+name="Debuff Overseer"
+description=""
+initially_off=1
+action=IfThenElseMultiple()
+>action:1=UnitRemoveAbilityBJ("A00F", $UNIT_Overseer)
+>action:1=UnitAddAbilityBJ("A00D", $UNIT_Overseer)
+>action:1=UnitRemoveBuffBJ("B017", $UNIT_Overseer)
+>condition:0=OperatorCompareInteger($Debuff_status, OperatorEqual, "1")
+action=IfThenElseMultiple()
+>action:1=UnitRemoveAbilityBJ("A00G", $UNIT_Overseer)
+>action:1=UnitRemoveAbilityBJ("A028", $UNIT_Overseer)
+>action:1=UnitRemoveBuffBJ("B019", $UNIT_Overseer)
+>action:1=UnitAddAbilityBJ("A00E", $UNIT_Overseer)
+>action:1=UnitAddAbilityBJ("A046", $UNIT_Overseer)
+>condition:0=OperatorCompareInteger($Debuff_status, OperatorEqual, "2")
+action=IfThenElseMultiple()
+>action:1=UnitRemoveAbilityBJ("A00D", $UNIT_Overseer)
+>action:1=UnitRemoveBuffBJ("B018", $UNIT_Overseer)
+>condition:0=OperatorCompareInteger($Debuff_status, OperatorEqual, "3")
+action=IfThenElseMultiple()
+>action:1=UnitRemoveAbilityBJ("A00E", $UNIT_Overseer)
+>action:1=UnitRemoveAbilityBJ("A046", $UNIT_Overseer)
+>action:1=UnitRemoveBuffBJ("B01A", $UNIT_Overseer)
+>condition:0=OperatorCompareInteger($Debuff_status, OperatorEqual, "4")

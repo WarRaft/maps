@@ -1,0 +1,21 @@
+[trigger]
+name="Steel Boots rec"
+description=""
+event=TriggerRegisterPlayerUnitEventSimple(Player00, PlayerUnitEventSpellEffect)
+event=TriggerRegisterPlayerUnitEventSimple(Player01, PlayerUnitEventSpellEffect)
+event=TriggerRegisterPlayerUnitEventSimple(Player02, PlayerUnitEventSpellEffect)
+action=IfThenElseMultiple()
+>condition:0=OperatorCompareBoolean(UnitHasItemOfTypeBJ(GetTriggerUnit(), "bspd"), OperatorEqualENE, "true")
+>condition:0=OperatorCompareBoolean(UnitHasItemOfTypeBJ(GetTriggerUnit(), "rde1"), OperatorEqualENE, "true")
+>condition:0=OperatorCompareBoolean(UnitHasItemOfTypeBJ(GetTriggerUnit(), "rlif"), OperatorEqualENE, "true")
+>condition:0=OperatorCompareBoolean(UnitHasItemOfTypeBJ(GetTriggerUnit(), "prvt"), OperatorEqualENE, "true")
+>action:2=PlaySoundOnUnitBJ($gg_snd_Error, "100", GetTriggerUnit())
+>action:2=DisplayTextToForce(GetForceOfPlayer(GetTriggerPlayer()), $TEXT_Msg["2"])
+>action:1=RemoveItem(GetItemOfTypeFromUnitBJ(GetTriggerUnit(), "bspd"))
+>action:1=RemoveItem(GetItemOfTypeFromUnitBJ(GetTriggerUnit(), "rde1"))
+>action:1=RemoveItem(GetItemOfTypeFromUnitBJ(GetTriggerUnit(), "rlif"))
+>action:1=RemoveItem(GetItemOfTypeFromUnitBJ(GetTriggerUnit(), "prvt"))
+>action:1=UnitAddItemByIdSwapped("I00H", GetTriggerUnit())
+>action:1=AddSpecialEffectTargetUnitBJ("origin", GetTriggerUnit(), "Abilities\\Spells\\Items\\AIlm\\AIlmTarget.mdl")
+>action:1=DestroyEffectBJ(GetLastCreatedEffectBJ())
+condition=OperatorCompareAbilityId(GetSpellAbilityId(), OperatorEqualENE, "A01A")

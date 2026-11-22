@@ -1,0 +1,26 @@
+[trigger]
+name="Init Skills"
+description=""
+initially_off=1
+action=ForForceMultiple($Players)
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A01Y", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A01Z", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A02I", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A01U", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A01T", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A01V", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A01X", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A020", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A021", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A02L", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A02N", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A02M", GetEnumPlayer())
+>action:0=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A05B", GetEnumPlayer())
+action=CommentString("Для Фатального удара")
+action=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A02L", Player04)
+action=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A02N", Player04)
+action=SetPlayerAbilityAvailableBJ(EnableDisableDisable, "A02M", Player04)
+action=UnitRemoveAbilityBJ("A04W", $Hero_mechanic)
+action=UnitRemoveAbilityBJ("A04R", $Hero_mechanic)
+action=UnitAddAbilityBJ("A01Z", $Hero_mechanic)
+action=UnitAddAbilityBJ("A001", $Hero_mechanic)

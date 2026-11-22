@@ -1,0 +1,20 @@
+[trigger]
+name="Music note Timer"
+description=""
+action=IfThenElseMultiple()
+>action:1=TriggerExecute($gg_trg_Music_notes_Activation)
+>action:2=SetVariable($Music, "0")
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B009_10778)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B007_10689)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B006_10784)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B009_10787)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B007_10782)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B00A_10780)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B006_10785)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B009_10777)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B007_10781)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B006_10786)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B007_10783)
+>action:2=ShowDestructableBJ(ShowHideHide, $gg_dest_B009_10779)
+>condition:0=OperatorCompareInteger($Music, OperatorEqual, "11")
+event=TriggerRegisterTimerExpireEventBJ($Music_Timer)

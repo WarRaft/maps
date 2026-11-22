@@ -1,0 +1,21 @@
+[trigger]
+name="Lever05"
+description="Рычаг для ворот от Лабиринта"
+action=ModifyGateBJ(GateOperationOpen, $gg_dest_LTg3_0447)
+action=DisableTrigger($gg_trg_Shadow_respawn)
+action=SetDoodadAnimationBJ("stand", "LOlp", "1000.00", Location("0.00", "9500.00"))
+action=CommentString("Свет от фонаря")
+action=CreateNUnitsAtLoc("1", "n00F", PlayerNE, Location("0", "9500.00"), RealUnitFacing)
+action=UnitApplyTimedLifeBJ("1.50", TimedLifeBuffCodeGeneric, GetLastCreatedUnit())
+action=IssuePointOrderLoc(GetLastCreatedUnit(), UnitOrderFlameStrike, Location("0", "9500.00"))
+action=EnumDestructablesInRectAllMultiple($gg_rct_REG_Destructable06)
+>action:0=IfThenElseMultiple()
+>>action:1=RemoveDestructable(GetEnumDestructable())
+>>condition:0=OperatorCompareDestructableCode(GetDestructableTypeId(GetEnumDestructable()), OperatorEqualENE, "B01M")
+action=CommentString("Убираем ограничение опыта (защита от фарма)")
+action=SuspendHeroXPBJ(EnableDisableEnable, $Hero_warrior)
+action=SuspendHeroXPBJ(EnableDisableEnable, $Hero_shaman)
+action=SuspendHeroXPBJ(EnableDisableEnable, $Hero_mechanic)
+action=CommentString("См. папку \"Ограничение опыта\"")
+action=DisableTrigger($gg_trg_ExpBlock2)
+event=TriggerRegisterDeathEvent($gg_dest_B00E_0267)

@@ -1,0 +1,12 @@
+[trigger]
+name="Lever04"
+description=""
+action=DisableTrigger($gg_trg_Necronomicon_Button5_Entrance)
+action=DisableTrigger($gg_trg_Necronomicon_Button5_Exit)
+action=DisableTrigger($gg_trg_Necronomicon_Button6_Entrance)
+action=DisableTrigger($gg_trg_Necronomicon_Button6_Exit)
+action=KillDestructable($gg_dest_B00S_0866)
+action=KillDestructable($gg_dest_B00S_9771)
+action=KillDestructable($gg_dest_DTfx_1045)
+action=KillDestructable($gg_dest_DTfx_1530)
+event=TriggerRegisterDeathEvent($gg_dest_B00E_1531)

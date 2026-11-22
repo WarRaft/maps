@@ -1,0 +1,22 @@
+[trigger]
+name="Cinematic BOSS3 Ending"
+description=""
+initially_off=1
+action=CinematicFadeBJ(FadeTypeOptionFadeOut, "1.00", CineFilterTextureBlack, "0", "0", "0", "0")
+action=TriggerSleepAction("0.90")
+action=CommentString("Необходимые действия за кадром (звук, перемещение юнитов)")
+action=PauseAllUnitsBJ(PauseUnpauseOptionUnpause)
+action=VolumeGroupSetVolumeBJ(VolumeGroupSpells, "100.00")
+action=EnableTrigger($gg_trg_Z_coordinate_check)
+action=TriggerExecute($gg_trg_Init_Boss3)
+action=CameraSetSmoothingFactorBJ("0.30")
+action=DestructableRestoreLife($gg_dest_B00S_9043, "500.00", ShowHideShow)
+action=DestructableRestoreLife($gg_dest_B00S_9044, "500.00", ShowHideShow)
+action=CommentString("Выбор положения камеры")
+action=ForForceMultiple($Players)
+>action:0=CameraSetupApplyForPlayer(CameraApply, $gg_cam_CAM_Boss3_05, GetEnumPlayer(), "0")
+action=CommentString("Ввод изображения")
+action=CinematicFadeBJ(FadeTypeOptionFadeIn, "0.60", CineFilterTextureBlack, "0", "0", "0", "0")
+action=CinematicModeExBJ(OnOffOff, GetPlayersAll(), "0.60")
+action=TriggerSleepAction("0.90")
+action=TriggerExecute($gg_trg_Help10)

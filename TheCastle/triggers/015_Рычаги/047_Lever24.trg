@@ -1,0 +1,21 @@
+[trigger]
+name="Lever24"
+description=""
+action=DisableTrigger(GetTriggeringTrigger())
+action=IfThenElseMultiple()
+>action:1=KillDestructable($gg_dest_B00S_4905)
+>action:1=KillDestructable($gg_dest_B00E_4896)
+>action:1=ReturnAction()
+>condition:0=OperatorCompareDestructible(GetDyingDestructable(), OperatorEqualENE, $gg_dest_B00E_4897)
+action=IfThenElseMultiple()
+>action:1=KillDestructable($gg_dest_B00S_4892)
+>action:1=KillDestructable($gg_dest_B00E_4897)
+>action:1=IfThenElseMultiple()
+>>action:1=CustomScriptCode("call TeoTextTag (\"Репутация изменена\", udg_Hero_warrior, 80,0,0)")
+>>action:1=CustomScriptCode("call TeoTextTag (\"Репутация изменена\", udg_Hero_shaman, 80,0,0)")
+>>action:1=CustomScriptCode("call TeoTextTag (\"Репутация изменена\", udg_Hero_mechanic, 80,0,0)")
+>>action:1=SetVariable($Reputation, OperatorReal($Reputation, OperatorSubtract, "10.00"))
+>>condition:0=OperatorCompareBoolean($Quest_Prisoner, OperatorEqualENE, "true")
+>condition:0=OperatorCompareDestructible(GetDyingDestructable(), OperatorEqualENE, $gg_dest_B00E_4896)
+event=TriggerRegisterDeathEvent($gg_dest_B00E_4897)
+event=TriggerRegisterDeathEvent($gg_dest_B00E_4896)

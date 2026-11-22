@@ -1,0 +1,20 @@
+[trigger]
+name="Magic Destroyer"
+description=""
+action=CustomScriptCode("local player dummy_player = Player(4)")
+action=CustomScriptCode("local unit target_unit = GetEventDamageSource()")
+action=CustomScriptCode("local unit dummy_unit")
+action=CustomScriptCode("local real target_x = GetUnitX (target_unit)")
+action=CustomScriptCode("local real target_y = GetUnitY (target_unit)")
+action=CustomScriptCode("call SetUnitState(GetTriggerUnit(), UNIT_STATE_LIFE,  ( GetUnitStateSwap(UNIT_STATE_LIFE, GetTriggerUnit()) + 30.00 ))")
+action=CustomScriptCode("call SetUnitManaBJ( target_unit, ( GetUnitStateSwap(UNIT_STATE_MANA, target_unit) - GetEventDamage() ) )")
+action=CustomScriptCode("call UnitDamageTargetBJ( GetTriggerUnit(), target_unit, ( 0.50 * GetEventDamage() ), ATTACK_TYPE_CHAOS, DAMAGE_TYPE_UNKNOWN )")
+action=CustomScriptCode("call DestroyEffect(AddSpecialEffectTargetUnitBJ( \"origin\", target_unit, \"Abilities\\\\Spells\\\\Items\\\\AIil\\\\AIilTarget.mdl\" ))")
+action=CustomScriptCode("set dummy_unit = TeoCreateDummyUnit( dummy_player, 'n00X', target_x, target_y, 'A053' )")
+action=CustomScriptCode("call IssueTargetOrder( dummy_unit, \"slow\", target_unit )")
+action=CommentString("Обнуление переменных")
+action=CustomScriptCode("set target_unit = null")
+action=CustomScriptCode("set dummy_unit = null")
+condition=OperatorCompareReal(GetUnitStateSwap(UnitStateMaxMana, GetEventDamageSource()), OperatorGreater, "0.00")
+condition=OperatorCompareBoolean(IsPlayerInForce(GetOwningPlayer(GetEventDamageSource()), $Players), OperatorEqualENE, "false")
+condition=OperatorCompareBoolean(UnitHasBuffBJ(GetTriggerUnit(), "B00O"), OperatorEqualENE, "true")

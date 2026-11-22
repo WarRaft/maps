@@ -1,0 +1,20 @@
+[trigger]
+name="Cinematic Prisoner1 Ending"
+description=""
+initially_off=1
+action=CinematicFadeBJ(FadeTypeOptionFadeOut, "1.00", CineFilterTextureBlack, "0", "0", "0", "0")
+action=TriggerSleepAction("0.90")
+action=CommentString("Необходимые действия за кадром (звук, перемещение юнитов)")
+action=PauseAllUnitsBJ(PauseUnpauseOptionUnpause)
+action=VolumeGroupSetVolumeBJ(VolumeGroupSpells, "100.00")
+action=EnableTrigger($gg_trg_Z_coordinate_check)
+action=CameraSetSmoothingFactorBJ("0.30")
+action=SetVariable($Quest_Prisoner, "true")
+action=AddTriggerEvent($gg_trg_Cinematic_Prisoner2, event:TriggerRegisterUnitInRangeSimple("300.00", $UNIT_Prisoner) ~"")
+action=EnableTrigger($gg_trg_Cinematic_Prisoner2)
+action=CommentString("Выбор положения камеры")
+action=ForForceMultiple($Players)
+>action:0=CameraSetupApplyForPlayer(CameraApply, $gg_cam_CAM_Prisoner5, GetEnumPlayer(), "0")
+action=CommentString("Ввод изображения")
+action=CinematicFadeBJ(FadeTypeOptionFadeIn, "0.60", CineFilterTextureBlack, "0", "0", "0", "0")
+action=CinematicModeExBJ(OnOffOff, GetPlayersAll(), "0.60")

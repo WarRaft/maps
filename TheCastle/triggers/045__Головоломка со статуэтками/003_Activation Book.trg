@@ -1,0 +1,26 @@
+[trigger]
+name="Activation Book"
+description=""
+initially_off=1
+action=DisableTrigger(GetTriggeringTrigger())
+condition=OperatorCompareBoolean(IsUnitType(GetEnteringUnit(), UnitTypeHero), OperatorEqualENE, "true")
+action=TriggerSleepAction("1.00")
+action=IfThenElseMultiple()
+>action:2=EnableTrigger(GetTriggeringTrigger())
+>action:1=TriggerExecute($gg_trg_Book_Effect)
+>condition:0=AndMultiple()
+>>condition:0=OrMultiple()
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Top, $Hero_mechanic), OperatorEqualENE, "true")
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Top, $Hero_shaman), OperatorEqualENE, "true")
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Top, $Hero_warrior), OperatorEqualENE, "true")
+>>condition:0=OrMultiple()
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Mid, $Hero_mechanic), OperatorEqualENE, "true")
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Mid, $Hero_shaman), OperatorEqualENE, "true")
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Mid, $Hero_warrior), OperatorEqualENE, "true")
+>>condition:0=OrMultiple()
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Bot, $Hero_mechanic), OperatorEqualENE, "true")
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Bot, $Hero_shaman), OperatorEqualENE, "true")
+>>>condition:0=OperatorCompareBoolean(RectContainsUnit($gg_rct_REG_HeroPosition_Bot, $Hero_warrior), OperatorEqualENE, "true")
+event=TriggerRegisterEnterRectSimple($gg_rct_REG_HeroPosition_Top)
+event=TriggerRegisterEnterRectSimple($gg_rct_REG_HeroPosition_Mid)
+event=TriggerRegisterEnterRectSimple($gg_rct_REG_HeroPosition_Bot)

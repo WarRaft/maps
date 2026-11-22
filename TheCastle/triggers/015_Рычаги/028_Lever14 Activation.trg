@@ -1,0 +1,20 @@
+[trigger]
+name="Lever14 Activation"
+description=""
+initially_off=1
+action=IfThenElseMultiple()
+>condition:0=OperatorCompareBoolean($Wrong_Place_for_Item, OperatorEqualENE, "false")
+>action:1=PlaySoundBJ($gg_snd_QuestNew)
+>action:2=TriggerSleepAction("1.00")
+>action:2=DestructableRestoreLife($gg_dest_B00E_3153, "5.00", ShowHideShow)
+>action:1=DestructableRestoreLife($gg_dest_DTs2_0673, "2500.00", ShowHideShow)
+>action:1=DestructableRestoreLife($gg_dest_DTs2_0672, "2500.00", ShowHideShow)
+>action:1=DisableTrigger($gg_trg_Array_of_Items)
+>condition:0=OrMultiple()
+>>condition:0=OperatorCompareBoolean(RectContainsItem($gg_item_I00W_0182, $gg_rct_REG_Statuette07_Knight), OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($gg_item_I00W_0189, $gg_rct_REG_Statuette07_Knight), OperatorEqualENE, "true")
+>condition:0=OrMultiple()
+>>condition:0=OperatorCompareBoolean(RectContainsItem($gg_item_I00W_0182, $gg_rct_REG_Statuette15_Knight), OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean(RectContainsItem($gg_item_I00W_0189, $gg_rct_REG_Statuette15_Knight), OperatorEqualENE, "true")
+>condition:0=OperatorCompareBoolean(RectContainsItem($gg_item_I010_0194, $gg_rct_REG_Statuette08_Azara), OperatorEqualENE, "true")
+>condition:0=OperatorCompareBoolean(RectContainsItem($gg_item_I00X_0188, $gg_rct_REG_Statuette10_Spider), OperatorEqualENE, "true")

@@ -1,0 +1,22 @@
+[trigger]
+name="heroes"
+description=""
+enabled=0
+initially_off=1
+action=DisableTrigger($gg_trg_ExpBlock1)
+action=DisableTrigger($gg_trg_ExpBlock2)
+action=SetHeroLevel($Hero_mechanic, "13", ShowHideShow)
+action=SetHeroLevel($Hero_shaman, "13", ShowHideShow)
+action=SetHeroLevel($Hero_warrior, "13", ShowHideShow)
+action=UnitAddItemByIdSwapped("I00A", $Hero_mechanic)
+action=UnitAddItemByIdSwapped("I01D", $Hero_mechanic)
+action=UnitAddItemByIdSwapped("I00H", $Hero_mechanic)
+action=UnitAddItemByIdSwapped("I00A", $Hero_shaman)
+action=UnitAddItemByIdSwapped("I01C", $Hero_shaman)
+action=UnitAddItemByIdSwapped("I00H", $Hero_shaman)
+action=UnitAddItemByIdSwapped("I00A", $Hero_warrior)
+action=UnitAddItemByIdSwapped("I00H", $Hero_warrior)
+action=UnitAddItemByIdSwapped("I00E", $Hero_warrior)
+action=UnitAddItemByIdSwapped("I016", $Hero_warrior)
+!action=UnitAddItemByIdSwapped("I02E", $Hero_warrior)
+event=TriggerRegisterPlayerChatEvent(Player00, "12", ChatMatchTypeExact)

@@ -1,0 +1,23 @@
+[trigger]
+name="Pedestal put a Necronomicon"
+description=""
+event=TriggerRegisterPlayerUnitEventSimple(PlayerNP, PlayerUnitEventSellItem)
+condition=OperatorCompareItemCode(GetItemTypeId(GetSoldItem()), OperatorEqualENE, "I00J")
+action=IfThenElseMultiple()
+>action:1=IfThenElseMultiple()
+>>action:1=DestructableRestoreLife($gg_dest_DTs2_0943, "2500.00", ShowHideShow)
+>>action:1=DestructableRestoreLife($gg_dest_DTs2_0931, "2500.00", ShowHideShow)
+>>condition:0=OperatorCompareUnit(GetTriggerUnit(), OperatorEqualENE, $Pedestal["1"])
+>action:1=IfThenElseMultiple()
+>>action:1=DestructableRestoreLife($gg_dest_DTs2_1041, "2500.00", ShowHideShow)
+>>condition:0=OperatorCompareUnit(GetTriggerUnit(), OperatorEqualENE, $Pedestal["2"])
+>action:1=IfThenElseMultiple()
+>>action:1=DestructableRestoreLife($gg_dest_DTs2_1073, "2500.00", ShowHideShow)
+>>condition:0=OperatorCompareUnit(GetTriggerUnit(), OperatorEqualENE, $Pedestal["3"])
+>action:2=AddItemToStockBJ("I00J", GetTriggerUnit(), "1", "1")
+>action:2=PlaySoundOnUnitBJ($gg_snd_Error, "100", GetBuyingUnit())
+>action:2=DisplayTextToForce(GetForceOfPlayer(GetOwningPlayer(GetBuyingUnit())), $TEXT_Msg["1"])
+>action:1=SetUnitAnimation(GetTriggerUnit(), "stand")
+>action:1=AddItemToStockBJ("I00I", GetTriggerUnit(), "0", "1")
+>action:1=RemoveItem(GetItemOfTypeFromUnitBJ(GetBuyingUnit(), "I00I"))
+>condition:0=OperatorCompareBoolean(UnitHasItemOfTypeBJ(GetBuyingUnit(), "I00I"), OperatorEqualENE, "true")

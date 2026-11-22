@@ -1,0 +1,22 @@
+[trigger]
+name="Soul Stone death"
+description="Воскрешает умерших воинов.\r\n"
+action=CustomScriptCode("local destructable dest = GetDyingDestructable()")
+action=CustomScriptCode("local real dest_x = GetDestructableX(dest)")
+action=CustomScriptCode("local real dest_y = GetDestructableY(dest)")
+action=CustomScriptCode("call DestroyEffect(AddSpecialEffect( \"Abilities\\\\Spells\\\\Human\\\\Resurrect\\\\ResurrectTarget.mdl\", dest_x, dest_y ))")
+action=CommentString("Выбираем группу юнитов")
+action=CustomScriptCode("call GroupEnumUnitsInRange (udg_TempGroup, dest_x, dest_y, 600, null) ")
+action=ForGroupMultiple($TempGroup)
+>action:0=CustomScriptCode("local unit dummy_unit")
+>action:0=IfThenElseMultiple()
+>>action:1=CustomScriptCode("set dummy_unit = TeoCreateDummyUnit( Player(bj_PLAYER_NEUTRAL_EXTRA), 'n00X', GetUnitX(GetEnumUnit()), GetUnitY(GetEnumUnit()), 'A02Y' )")
+>>action:1=CustomScriptCode("call IssueImmediateOrder( dummy_unit, \"instant\" )")
+>>action:1=CustomScriptCode("set dummy_unit = null")
+>>condition:0=OperatorCompareBoolean(IsUnitDeadBJ(GetEnumUnit()), OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean(IsUnitType(GetEnumUnit(), UnitTypeHero), OperatorEqualENE, "false")
+action=CommentString("Обнуление переменных")
+action=CustomScriptCode("call GroupClear( udg_TempGroup )")
+action=CustomScriptCode("set dest = null")
+event=TriggerRegisterDeathEvent($gg_dest_B00G_4765)
+event=TriggerRegisterDeathEvent($gg_dest_B00G_7436)

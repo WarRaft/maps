@@ -1,0 +1,25 @@
+[trigger]
+name="Lightning Discharge timer"
+description=""
+initially_off=1
+action=CustomScriptCode("local real x")
+action=CustomScriptCode("local real y")
+action=IfThenElseMultiple()
+>action:1=CustomScriptCode("set x = LoadRealBJ(31, 1, GetLastCreatedHashtableBJ())")
+>action:1=CustomScriptCode("set y = LoadRealBJ(31, 2, GetLastCreatedHashtableBJ())")
+>action:2=IfThenElseMultiple()
+>>action:1=CustomScriptCode("set x = LoadRealBJ(32, 1, GetLastCreatedHashtableBJ())")
+>>action:1=CustomScriptCode("set y = LoadRealBJ(32, 2, GetLastCreatedHashtableBJ())")
+>>action:2=IfThenElseMultiple()
+>>>action:1=CustomScriptCode("set x = LoadRealBJ(33, 1, GetLastCreatedHashtableBJ())")
+>>>action:1=CustomScriptCode("set y = LoadRealBJ(33, 2, GetLastCreatedHashtableBJ())")
+>>>condition:0=OperatorCompareInteger($Boss3_Random, OperatorEqual, "3")
+>>condition:0=OperatorCompareInteger($Boss3_Random, OperatorEqual, "2")
+>condition:0=OperatorCompareInteger($Boss3_Random, OperatorEqual, "1")
+action=CommentString("Если применение умения не прерывалось")
+action=IfThenElseMultiple()
+>action:1=CustomScriptCode("call UnitDamagePoint(udg_UNIT_Boss3_Orc, 0, 190.00, x, y,1000.00, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS)")
+>action:1=CustomScriptCode("call DestroyEffect( AddSpecialEffect( \"EFFECTS\\\\Stormfall.mdx\", x, y) )")
+>action:1=CustomScriptCode("call DestroyEffect( AddSpecialEffect( \"Abilities\\\\Spells\\\\Human\\\\Thunderclap\\\\ThunderClapCaster.mdl\", x, y) )")
+>condition:0=OperatorCompareBoolean(LoadBooleanBJ("30", "3", GetLastCreatedHashtableBJ()), OperatorEqualENE, "true")
+event=TriggerRegisterTimerExpireEventBJ($Lighting_Discharge_Timer)

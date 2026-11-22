@@ -1,0 +1,19 @@
+[trigger]
+name="Bridge Open"
+description=""
+initially_off=1
+action=IfThenElseMultiple()
+>action:1=DisableTrigger(GetTriggeringTrigger())
+>action:1=TriggerSleepAction("1.00")
+>action:1=AddSpecialEffectTargetUnitBJ("overhead", $gg_unit_u00A_0522, "Abilities\\Spells\\Human\\Resurrect\\ResurrectTarget.mdl")
+>action:1=AddSpecialEffectTargetUnitBJ("overhead", $gg_unit_u00A_0520, "Abilities\\Spells\\Human\\Resurrect\\ResurrectTarget.mdl")
+>action:1=TriggerSleepAction("1.00")
+>action:1=SetUnitAnimation($gg_unit_u00A_0522, "stand")
+>action:1=SetUnitAnimation($gg_unit_u00A_0520, "stand")
+>action:1=DestructableRestoreLife($gg_dest_DTs2_8189, "2500.00", ShowHideShow)
+>action:1=EnumDestructablesInRectAllMultiple($gg_rct_REG_Destructable11)
+>>action:0=IfThenElseMultiple()
+>>>action:1=RemoveDestructable(GetEnumDestructable())
+>>>condition:0=OperatorCompareDestructableCode(GetDestructableTypeId(GetEnumDestructable()), OperatorEqualENE, "YTpb")
+>condition:0=OperatorCompareBoolean(IsTriggerEnabled($gg_trg_Altar1), OperatorEqualENE, "false")
+>condition:0=OperatorCompareBoolean(IsTriggerEnabled($gg_trg_Altar2), OperatorEqualENE, "false")

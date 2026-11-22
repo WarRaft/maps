@@ -1,0 +1,23 @@
+[trigger]
+name="Pedestal take a Necronomicon"
+description=""
+event=TriggerRegisterPlayerUnitEventSimple(PlayerNP, PlayerUnitEventSellItem)
+action=IfThenElseMultiple()
+>action:1=KillDestructable($gg_dest_DTs2_0943)
+>action:1=KillDestructable($gg_dest_DTs2_0931)
+>action:1=SetVariable($Bridge_num, "1")
+>action:1=StartTimerBJ($Bridge_Timer, PeriodicOptionOneTime, "2.70")
+>condition:0=OperatorCompareUnit(GetTriggerUnit(), OperatorEqualENE, $Pedestal["1"])
+action=IfThenElseMultiple()
+>action:1=KillDestructable($gg_dest_DTs2_1041)
+>action:1=SetVariable($Bridge_num, "2")
+>action:1=StartTimerBJ($Bridge_Timer, PeriodicOptionOneTime, "2.70")
+>condition:0=OperatorCompareUnit(GetTriggerUnit(), OperatorEqualENE, $Pedestal["2"])
+action=IfThenElseMultiple()
+>action:1=KillDestructable($gg_dest_DTs2_1073)
+>action:1=SetVariable($Bridge_num, "3")
+>action:1=StartTimerBJ($Bridge_Timer, PeriodicOptionOneTime, "2.70")
+>condition:0=OperatorCompareUnit(GetTriggerUnit(), OperatorEqualENE, $Pedestal["3"])
+action=SetUnitAnimation(GetTriggerUnit(), "stand second")
+action=AddItemToStockBJ("I00J", GetTriggerUnit(), "0", "1")
+condition=OperatorCompareItemCode(GetItemTypeId(GetSoldItem()), OperatorEqualENE, "I00I")

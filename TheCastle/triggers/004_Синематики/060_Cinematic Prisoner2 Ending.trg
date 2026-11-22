@@ -1,0 +1,27 @@
+[trigger]
+name="Cinematic Prisoner2 Ending"
+description=""
+initially_off=1
+action=CinematicFadeBJ(FadeTypeOptionFadeOut, "1.00", CineFilterTextureBlack, "0", "0", "0", "0")
+action=TriggerSleepAction("0.90")
+action=CommentString("Необходимые действия за кадром (звук, перемещение юнитов)")
+action=PauseAllUnitsBJ(PauseUnpauseOptionUnpause)
+action=VolumeGroupSetVolumeBJ(VolumeGroupSpells, "100.00")
+action=EnableTrigger($gg_trg_Z_coordinate_check)
+action=CameraSetSmoothingFactorBJ("0.30")
+action=RemoveUnit($UNIT_Prisoner)
+action=IfThenElseMultiple()
+>action:1=CreateItemLoc("I02W", Location("8560.00", "-2075.00"))
+>condition:0=OperatorCompareBoolean($Cinematic_Prisoner, OperatorEqualENE, "false")
+action=KillDestructable(LoadDestructableHandleBJ("23", "1", GetLastCreatedHashtableBJ()))
+action=CommentString("Выбор положения камеры")
+action=ForForceMultiple($Players)
+>action:0=CameraSetupApplyForPlayer(CameraApply, $gg_cam_CAM_Prisoner5, GetEnumPlayer(), "0")
+action=CommentString("Ввод изображения")
+action=CinematicFadeBJ(FadeTypeOptionFadeIn, "0.60", CineFilterTextureBlack, "0", "0", "0", "0")
+action=CinematicModeExBJ(OnOffOff, GetPlayersAll(), "0.60")
+action=TriggerSleepAction("0.50")
+action=CustomScriptCode("call TeoTextTag (\"Репутация изменена\", udg_Hero_warrior, 0,80,0)")
+action=CustomScriptCode("call TeoTextTag (\"Репутация изменена\", udg_Hero_shaman, 0,80,0)")
+action=CustomScriptCode("call TeoTextTag (\"Репутация изменена\", udg_Hero_mechanic, 0,80,0)")
+action=SetVariable($Reputation, OperatorReal($Reputation, OperatorAdd, "10.00"))

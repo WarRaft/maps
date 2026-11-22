@@ -1,0 +1,22 @@
+[trigger]
+name="Activation robot"
+description="Включается триггером First Activating robot  в папке \"Сюжет\""
+initially_off=1
+action=IfThenElseMultiple()
+>condition:0=OperatorCompareBoolean($Robot_Repair_Bool, OperatorEqualENE, "false")
+>action:2=PlaySoundOnUnitBJ($gg_snd_Error, "100", GetTriggerUnit())
+>action:2=DisplayTextToForce(GetForceOfPlayer(GetTriggerPlayer()), "TRIGSTR_1437")
+>action:1=SetVariable($Robot_Activation_Bool, "true")
+>action:1=RescueUnitBJ($UNIT_Robot, GetOwningPlayer(GetTriggerUnit()), ChangeColorFalse)
+>action:1=IssueTargetOrder($Hero_mechanic, UnitOrderBoard, $UNIT_Robot)
+>action:1=UnitRemoveAbilityBJ("Avul", $UNIT_Robot)
+>action:1=UnitAddAbilityBJ("A050", $UNIT_Robot)
+>action:1=SetUnitTimeScalePercent($UNIT_Robot, "100.00")
+>action:1=SetVariable($Hero_mechanic, $UNIT_Robot)
+>action:1=SelectUnitForPlayerSingle($Hero_mechanic, GetOwningPlayer($Hero_mechanic))
+>action:1=EnableTrigger($gg_trg_Deactivation_robot)
+condition=OperatorCompareAbilityId(GetSpellAbilityId(), OperatorEqualENE, "A009")
+condition=OperatorCompareUnit(GetSpellTargetUnit(), OperatorEqualENE, $UNIT_Robot)
+event=TriggerRegisterPlayerUnitEventSimple(Player00, PlayerUnitEventSpellEffect)
+event=TriggerRegisterPlayerUnitEventSimple(Player01, PlayerUnitEventSpellEffect)
+event=TriggerRegisterPlayerUnitEventSimple(Player02, PlayerUnitEventSpellEffect)

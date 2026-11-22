@@ -1,0 +1,22 @@
+[trigger]
+name="Portal passage"
+description="Проход через портал\r\n"
+condition=OperatorCompareBoolean(IsUnitType(GetTriggerUnit(), UnitTypeStructure), OperatorEqualENE, "false")
+action=CustomScriptCode("local unit temp_unit = GetTriggerUnit()")
+action=CustomScriptCode("local unit portal = LoadUnitHandleBJ(0, 2, GetLastCreatedHashtableBJ())")
+action=CustomScriptCode("local real portal_x = GetUnitX (portal)")
+action=CustomScriptCode("local real portal_y = GetUnitY (portal)")
+action=CustomScriptCode("local real portal_angle = GetUnitFacing(portal)")
+action=CustomScriptCode("local location point = Location( portal_x,  portal_y)")
+action=CommentString("Перемещаем входящего в портал юнита")
+action=CustomScriptCode("call SetUnitPosition( temp_unit, portal_x, portal_y )")
+action=CustomScriptCode("call IssuePointOrder( temp_unit, \"move\", portal_x + 150.00 * CosBJ(portal_angle), portal_y + 150.00 * SinBJ(portal_angle))")
+action=CommentString("Перемещаем камеру")
+action=CustomScriptCode("call PanCameraToTimedLocForPlayer( GetOwningPlayer(temp_unit), point, 0 )")
+condition=OperatorCompareBoolean($Teleport_Bool, OperatorEqualENE, "true")
+condition=OperatorCompareUnit(LoadUnitHandleBJ("0", "2", GetLastCreatedHashtableBJ()), OperatorNotEqualENE, UnitNull)
+action=CommentString("Обнуление переменных")
+action=CustomScriptCode("call RemoveLocation(point)")
+action=CustomScriptCode("set point = null")
+action=CustomScriptCode("set temp_unit = null")
+action=CustomScriptCode("set portal = null")

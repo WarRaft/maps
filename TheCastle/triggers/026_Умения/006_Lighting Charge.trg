@@ -1,0 +1,20 @@
+[trigger]
+name="Lighting Charge"
+description=""
+event=TriggerRegisterPlayerUnitEventSimple(Player00, PlayerUnitEventSpellEffect)
+event=TriggerRegisterPlayerUnitEventSimple(Player01, PlayerUnitEventSpellEffect)
+event=TriggerRegisterPlayerUnitEventSimple(Player02, PlayerUnitEventSpellEffect)
+action=CustomScriptCode("local player dummy_player = Player(4)")
+action=CustomScriptCode("local location point = GetSpellTargetLoc()")
+action=CustomScriptCode("local unit dummy_unit")
+action=CommentString("Создаем дамми-юнита, уничтожающего тени")
+action=CustomScriptCode("set dummy_unit = CreateUnit(dummy_player, 'n01L', GetLocationX(point), GetLocationY(point), 0)")
+action=CustomScriptCode("call UnitApplyTimedLife( dummy_unit, 'BTLF', 4.6 )")
+action=CustomScriptCode("call UnitAddAbility( dummy_unit, 'A000' )")
+action=CustomScriptCode("call SetUnitFlyHeight( dummy_unit, 0, 238.00 )")
+action=CustomScriptCode("call IssuePointOrder( dummy_unit, \"flare\", GetLocationX(point), GetLocationY(point) )")
+action=CommentString("Обнуление переменных")
+action=CustomScriptCode("call RemoveLocation(point)")
+action=CustomScriptCode("set point = null")
+action=CustomScriptCode("set dummy_unit = null")
+condition=OperatorCompareAbilityId(GetSpellAbilityId(), OperatorEqualENE, "A018")

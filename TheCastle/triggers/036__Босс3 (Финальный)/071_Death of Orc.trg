@@ -1,0 +1,22 @@
+[trigger]
+name="Death of Orc"
+description=""
+action=DisableTrigger(GetTriggeringTrigger())
+action=AddSpecialEffectLocBJ(GetUnitLoc(GetDyingUnit()), "EFFECTS\\AncientExplode.mdx")
+action=SetVariable($Boss3_MaxMonsters["2"], "0")
+action=IfThenElseMultiple()
+>action:1=QuestMessageBJ($Players, QuestMessageTypeAlwaysHint, "TRIGSTR_3932")
+>action:1=AddSpecialEffectTargetUnitBJ("origin", $UNIT_Boss3_Goblin, "Abilities\\Spells\\Other\\Levelup\\LevelupCaster.mdl")
+>action:1=ModifyHeroStat(HeroStatStr, $UNIT_Boss3_Goblin, ModifyMethodAdd, "20")
+>action:1=ModifyHeroStat(HeroStatInt, $UNIT_Boss3_Goblin, ModifyMethodAdd, "20")
+>condition:0=OperatorCompareBoolean(IsUnitAliveBJ($UNIT_Boss3_Goblin), OperatorEqualENE, "true")
+action=IfThenElseMultiple()
+>action:1=QuestMessageBJ($Players, QuestMessageTypeAlwaysHint, "TRIGSTR_4757")
+>action:1=AddSpecialEffectTargetUnitBJ("origin", $UNIT_Boss3_Troll, "Abilities\\Spells\\Other\\Levelup\\LevelupCaster.mdl")
+>action:1=ModifyHeroStat(HeroStatStr, $UNIT_Boss3_Troll, ModifyMethodAdd, "20")
+>action:1=ModifyHeroStat(HeroStatAgi, $UNIT_Boss3_Troll, ModifyMethodAdd, "20")
+>action:1=UnitAddAbilityBJ("A067", $UNIT_Boss3_Troll)
+>action:1=EnableTrigger($gg_trg_Voodoo)
+>condition:0=OperatorCompareBoolean(IsUnitAliveBJ($UNIT_Boss3_Troll), OperatorEqualENE, "true")
+action=KillDestructable(LoadDestructableHandleBJ("21", "1", GetLastCreatedHashtableBJ()))
+action=TriggerExecute($gg_trg_Death_of_all_Bosses)

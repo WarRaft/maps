@@ -1,0 +1,19 @@
+[trigger]
+name="Runes Button3 Entrance"
+description=""
+action=SetVariable($TempUnit, GetEnteringUnit())
+condition=OperatorCompareBoolean(IsUnitType(GetEnteringUnit(), UnitTypeHero), OperatorEqualENE, "true")
+action=SetVariable($TempNumButton, "3")
+action=TriggerExecute($gg_trg_BUTTON_ENTRANCE)
+action=IfThenElseMultiple()
+>condition:0=OperatorCompareInteger(CountUnitsInGroup($Button_Units["3"]), OperatorEqual, "1")
+>action:1=AddSpecialEffectLocBJ(GetDestructableLoc($gg_dest_B003_0441), "Environment\\NightElfBuildingFire\\ElfSmallBuildingFire2.mdl")
+>action:1=DestroyEffectBJ(GetLastCreatedEffectBJ())
+>action:1=TriggerSleepAction("0.50")
+>action:1=IfThenElseMultiple()
+>>condition:0=OperatorCompareBoolean(IsDestructableDeadBJ($Button["3"]), OperatorEqualENE, "true")
+>>action:1=ShowDestructableBJ(ShowHideHide, $gg_dest_B003_0441)
+>>action:1=ShowDestructableBJ(ShowHideShow, $gg_dest_B002_0440)
+>>action:1=TriggerExecute($gg_trg_Runes_Buttons_Checking)
+>>action:2=DoNothing()
+event=TriggerRegisterEnterRectSimple($gg_rct_REG_Button03)

@@ -1,0 +1,26 @@
+[trigger]
+name="Algorithm2"
+description=""
+initially_off=1
+action=IfThenElseMultiple()
+>action:1=AddItemToStockBJ("I022", $gg_unit_n022_0203, "0", "1")
+>action:1=PlaySoundOnUnitBJ($gg_snd_Error, "100", GetTriggerUnit())
+>action:1=DisplayTextToForce(GetForceOfPlayer(GetOwningPlayer(GetBuyingUnit())), "TRIGSTR_3319")
+>action:1=ReturnAction()
+>condition:0=OrMultiple()
+>>condition:0=OperatorCompareUnit(GetBuyingUnit(), OperatorEqualENE, $Hero_shaman)
+>>condition:0=OperatorCompareUnit(GetBuyingUnit(), OperatorEqualENE, $Hero_warrior)
+action=IfThenElseMultiple()
+>action:1=DisableTrigger(GetTriggeringTrigger())
+>action:1=EnableTrigger($gg_trg_Algorithm3)
+>action:1=AddItemToStockBJ("I023", $gg_unit_n022_0203, "1", "1")
+>action:1=UnitAddAbilityBJ("A00K", $gg_unit_n022_0203)
+>action:1=ForLoopAMultiple("1", "3")
+>>action:0=UnitAddAbilityBJ("A043", $Spatial_Cube[GetForLoopIndexA()])
+>>action:0=AddItemToStockBJ("I027", $Spatial_Cube[GetForLoopIndexA()], "1", "1")
+>>action:0=AddItemToStockBJ("I025", $Spatial_Cube[GetForLoopIndexA()], "1", "1")
+>>action:0=AddItemToStockBJ("I026", $Spatial_Cube[GetForLoopIndexA()], "1", "1")
+>>action:0=AddItemToStockBJ("I024", $Spatial_Cube[GetForLoopIndexA()], "1", "1")
+>condition:0=OperatorCompareUnit(GetBuyingUnit(), OperatorEqualENE, $Hero_mechanic)
+condition=OperatorCompareItemCode(GetItemTypeId(GetSoldItem()), OperatorEqualENE, "I022")
+event=TriggerRegisterPlayerUnitEventSimple(PlayerNP, PlayerUnitEventSellItem)

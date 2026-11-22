@@ -1,0 +1,19 @@
+[trigger]
+name="Trolls Count"
+description=""
+initially_off=1
+action=SetItemCharges($Boss3_Troll_Item, OperatorInt(GetItemCharges($Boss3_Troll_Item), OperatorSubtract, "1"))
+action=IfThenElseMultiple()
+>action:1=QuestMessageBJ($Players, QuestMessageTypeAlwaysHint, "TRIGSTR_3769")
+>action:1=RemoveItem($Boss3_Troll_Item)
+>action:1=DisableTrigger(GetTriggeringTrigger())
+>action:1=DisableTrigger($gg_trg_Troll_Invulnerability)
+>action:1=UnitRemoveAbilityBJ("A059", $UNIT_Boss3_Troll)
+>action:1=UnitRemoveAbilityBJ("A062", $UNIT_Boss3_Troll)
+>condition:0=OperatorCompareInteger(GetItemCharges($Boss3_Troll_Item), OperatorEqual, "0")
+condition=OrMultiple()
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetDyingUnit()), OperatorEqualENE, "o006")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetDyingUnit()), OperatorEqualENE, "n02I")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetDyingUnit()), OperatorEqualENE, "n02J")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetDyingUnit()), OperatorEqualENE, "o005")
+event=TriggerRegisterPlayerUnitEventSimple(PlayerNA, PlayerUnitEventDeath)

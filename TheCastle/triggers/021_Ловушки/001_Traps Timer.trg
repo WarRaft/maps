@@ -1,0 +1,21 @@
+[trigger]
+name="Traps Timer"
+description=""
+action=ForLoopVarMultiple($Traps_count, "1", $NumTraps)
+>action:0=SetVariable($TrapFrequence[$Traps_count], OperatorInt($TrapFrequence[$Traps_count], OperatorSubtract, "1"))
+>action:0=IfThenElseMultiple()
+>>action:1=IfThenElseMultiple()
+>>>action:2=KillDestructable($Traps[$Traps_count])
+>>>action:2=KillDestructable($TrapBlock[$Traps_count])
+>>>action:2=SetVariable($Trap_Bool[$Traps_count], "true")
+>>>action:1=CustomScriptCode("call GroupEnumUnitsInRect ( udg_Trap_Units, udg_TrapRegion[udg_Traps_count], null )")
+>>>action:1=ForGroupMultiple($Trap_Units)
+>>>>action:0=KillUnit(GetEnumUnit())
+>>>action:1=DestructableRestoreLife($Traps[$Traps_count], "500.00", ShowHideShow)
+>>>action:1=DestructableRestoreLife($TrapBlock[$Traps_count], "500.00", ShowHideHide)
+>>>action:1=SetVariable($Trap_Bool[$Traps_count], "false")
+>>>action:1=CustomScriptCode("call GroupClear( udg_Trap_Units )")
+>>>condition:0=OperatorCompareBoolean($Trap_Bool[$Traps_count], OperatorEqualENE, "true")
+>>action:1=SetVariable($TrapFrequence[$Traps_count], $InitialTrapsFrequence[$Traps_count])
+>>condition:0=OperatorCompareInteger($TrapFrequence[$Traps_count], OperatorEqual, "0")
+event=TriggerRegisterTimerEventPeriodic("1.00")

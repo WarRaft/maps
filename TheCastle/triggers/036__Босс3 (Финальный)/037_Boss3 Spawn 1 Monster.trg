@@ -1,0 +1,25 @@
+[trigger]
+name="Boss3 Spawn 1 Monster"
+description=""
+initially_off=1
+action=CustomScriptCode("local unit new_unit")
+action=CustomScriptCode("local real x = -6400")
+action=CustomScriptCode("local real y = -11900")
+action=CustomScriptCode("local location point = GetRectCenter(udg_Boss3_SpawnRegions[GetForLoopIndexA()])")
+action=SetVariable($Boss3_SpawnFrequence[GetForLoopIndexA()], OperatorInt($Boss3_SpawnFrequence[GetForLoopIndexA()], OperatorSubtract, "1"))
+action=IfThenElseMultiple()
+>action:1=CommentString("Обнуление переменных")
+>action:1=CustomScriptCode("call RemoveLocation(point)")
+>action:1=CustomScriptCode("set point = null")
+>action:1=CustomScriptCode("set new_unit = null")
+>action:1=ReturnAction()
+>condition:0=OperatorCompareInteger($Boss3_SpawnFrequence[GetForLoopIndexA()], OperatorNotEqual, "0")
+action=CommentString("Восстанавливаем частоту")
+action=SetVariable($Boss3_SpawnFrequence[GetForLoopIndexA()], $Boss3_InitialSpawnFrequence[GetForLoopIndexA()])
+action=CustomScriptCode("set new_unit = TeoCreateUnit( Player(PLAYER_NEUTRAL_AGGRESSIVE), udg_Boss3_MonsterTypes[GetForLoopIndexA()], GetLocationX(point),GetLocationY(point), GetRandomDirectionDeg() )")
+action=CustomScriptCode("call GroupAddUnitSimple( new_unit, udg_Boss3_MonsterGroups[GetForLoopIndexA()] )")
+action=CustomScriptCode("call IssuePointOrder(new_unit, \"attack\", x, y)")
+action=CommentString("Обнуление переменных")
+action=CustomScriptCode("call RemoveLocation(point)")
+action=CustomScriptCode("set point = null")
+action=CustomScriptCode("set new_unit = null")

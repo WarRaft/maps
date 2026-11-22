@@ -1,0 +1,22 @@
+[trigger]
+name="Button22 Action"
+description=""
+action=CommentString("Проигрывание звука и проверка на правильность")
+action=IfThenElseMultiple()
+>action:2=IfThenElseMultiple()
+>>action:2=IfThenElseMultiple()
+>>>action:2=PauseTimerBJ(PauseResumePause, $Music_Timer)
+>>>action:2=TriggerExecute($gg_trg_Music_note_Timer)
+>>>action:1=SetVariable($Music, OperatorInt($Music, OperatorAdd, "1"))
+>>>action:1=ShowDestructableBJ(ShowHideShow, $gg_dest_B006_10786)
+>>>action:1=StartTimerBJ($Music_Timer, PeriodicOptionOneTime, "3.00")
+>>>condition:0=OperatorCompareInteger($Music, OperatorEqual, "9")
+>>action:1=SetVariable($Music, OperatorInt($Music, OperatorAdd, "1"))
+>>action:1=ShowDestructableBJ(ShowHideShow, $gg_dest_B006_10785)
+>>action:1=StartTimerBJ($Music_Timer, PeriodicOptionOneTime, $Music_Timer_count)
+>>condition:0=OperatorCompareInteger($Music, OperatorEqual, "6")
+>action:1=SetVariable($Music, OperatorInt($Music, OperatorAdd, "1"))
+>action:1=ShowDestructableBJ(ShowHideShow, $gg_dest_B006_10784)
+>action:1=StartTimerBJ($Music_Timer, PeriodicOptionOneTime, $Music_Timer_count)
+>condition:0=OperatorCompareInteger($Music, OperatorEqual, "2")
+event=TriggerRegisterDeathEvent($gg_dest_B01J_10392)

@@ -1,0 +1,22 @@
+[trigger]
+name="Death of Hero"
+description="Перевыбор нужен для того, чтобы камера прикреплялась за другим героем после смерти основного\r\nHeroTimer[1] - Таймер для Механика\r\nHeroTimer[2] - Таймер для Шамана\r\nHeroTimer[3] - Таймер для Воина"
+condition=OperatorCompareBoolean(IsUnitType(GetDyingUnit(), UnitTypeHero), OperatorEqualENE, "true")
+action=CommentString("Уменьшаем количество воскрешений у всех Игроков")
+action=SetVariable($Count_Life, OperatorInt($Count_Life, OperatorSubtract, "1"))
+action=ForForceMultiple($Players)
+>action:0=SetPlayerState(GetEnumPlayer(), PlayerStateLumber, OperatorInt($Count_Life, OperatorSubtract, "1"))
+action=CommentString("Проверяем на условие Поражения")
+action=IfThenElseMultiple()
+>action:1=DisableTrigger($gg_trg_Timer_Mechanic)
+>action:1=DisableTrigger($gg_trg_Timer_Shaman)
+>action:1=DisableTrigger($gg_trg_Timer_Warrior)
+>action:1=DisableTrigger(GetTriggeringTrigger())
+>action:2=IfThenElse(condition:OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $Hero_mechanic) ~"", action:StartTimerBJ($Hero_Timer["1"], PeriodicOptionOneTime, "5.00") ~"DoNothing", action:DoNothing())
+>action:2=IfThenElse(condition:OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $Hero_shaman) ~"", action:StartTimerBJ($Hero_Timer["2"], PeriodicOptionOneTime, "5.00") ~"DoNothing", action:DoNothing())
+>action:2=IfThenElse(condition:OperatorCompareUnit(GetDyingUnit(), OperatorEqualENE, $Hero_warrior) ~"", action:StartTimerBJ($Hero_Timer["3"], PeriodicOptionOneTime, "5.00") ~"DoNothing", action:DoNothing())
+>action:1=TriggerExecute($gg_trg_The_Defeat)
+>condition:0=OperatorCompareInteger($Count_Life, OperatorLessEq, "0")
+event=TriggerRegisterPlayerUnitEventSimple(Player00, PlayerUnitEventDeath)
+event=TriggerRegisterPlayerUnitEventSimple(Player01, PlayerUnitEventDeath)
+event=TriggerRegisterPlayerUnitEventSimple(Player02, PlayerUnitEventDeath)

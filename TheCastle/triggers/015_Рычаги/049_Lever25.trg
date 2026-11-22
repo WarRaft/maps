@@ -1,0 +1,19 @@
+[trigger]
+name="Lever25"
+description=""
+action=IfThenElseMultiple()
+>action:2=TriggerSleepAction("1.00")
+>action:2=DestructableRestoreLife($gg_dest_B00E_5359, "5.00", ShowHideShow)
+>action:1=CommentString("Открываем решетку")
+>action:1=DestructableRestoreLife($gg_dest_DTs2_5356, "2500.00", ShowHideShow)
+>action:1=EnumDestructablesInRectAllMultiple($gg_rct_REG_Destructable12)
+>>action:0=IfThenElseMultiple()
+>>>action:1=RemoveDestructable(GetEnumDestructable())
+>>>condition:0=OperatorCompareDestructableCode(GetDestructableTypeId(GetEnumDestructable()), OperatorEqualENE, "YTpb")
+>action:1=DisableTrigger($gg_trg_Button18_Entrance)
+>action:1=DisableTrigger($gg_trg_Button18_Exit)
+>action:1=DisableTrigger($gg_trg_Button19_Entrance)
+>action:1=DisableTrigger($gg_trg_Button19_Exit)
+>condition:0=OperatorCompareBoolean(IsDestructableAliveBJ($gg_dest_DTfx_5360), OperatorEqualENE, "false")
+>condition:0=OperatorCompareBoolean(IsDestructableAliveBJ($gg_dest_DTfx_5361), OperatorEqualENE, "false")
+event=TriggerRegisterDeathEvent($gg_dest_B00E_5359)

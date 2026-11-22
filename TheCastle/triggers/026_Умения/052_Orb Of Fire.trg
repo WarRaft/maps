@@ -1,0 +1,20 @@
+[trigger]
+name="Orb Of Fire"
+description=""
+condition=OperatorCompareBoolean(UnitHasItemOfTypeBJ(GetTriggerUnit(), "I02E"), OperatorEqualENE, "true")
+condition=OperatorCompareBoolean(IsUnitType(GetEventDamageSource(), UnitTypeMeleeAttacker), OperatorEqualENE, "true")
+condition=OperatorCompareBoolean(IsUnitAliveBJ(GetEventDamageSource()), OperatorEqualENE, "true")
+condition=OperatorCompareUnit(GetEventDamageSource(), OperatorNotEqualENE, GetTriggerUnit())
+action=CustomScriptCode("local unit hero_unit = GetTriggerUnit()")
+action=CustomScriptCode("local unit dummy_unit")
+action=CustomScriptCode("local unit target_unit = GetEventDamageSource()")
+action=CustomScriptCode("local player dummy_player = GetOwningPlayer(hero_unit)")
+action=CustomScriptCode("local real hero_x = GetUnitX (hero_unit)")
+action=CustomScriptCode("local real hero_y = GetUnitY (hero_unit)")
+action=CommentString("Создаем дамми-юнита, который обжигает наносящих урон врагов")
+action=CustomScriptCode("    set dummy_unit = TeoCreateDummyUnit( dummy_player, 'n02C', hero_x, hero_y, 'A04N' )")
+action=CustomScriptCode("    call IssueTargetOrder( dummy_unit, \"attackonce\", target_unit )")
+action=CommentString("Обнуление переменных")
+action=CustomScriptCode("set hero_unit = null")
+action=CustomScriptCode("set dummy_unit = null")
+action=CustomScriptCode("set target_unit = null")

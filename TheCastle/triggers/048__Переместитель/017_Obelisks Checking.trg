@@ -1,0 +1,24 @@
+[trigger]
+name="Obelisks Checking"
+description=""
+initially_off=1
+action=IfThenElseMultiple()
+>action:1=PauseTimerBJ(PauseResumePause, $Obelisk_Timer["1"])
+>action:1=PauseTimerBJ(PauseResumePause, $Obelisk_Timer["2"])
+>action:1=PauseTimerBJ(PauseResumePause, $Obelisk_Timer["3"])
+>action:1=PauseTimerBJ(PauseResumePause, $Obelisk_Timer["4"])
+>action:1=DisableTrigger($gg_trg_Obelisk1_Entrance)
+>action:1=DisableTrigger($gg_trg_Obelisk1_Exit)
+>action:1=DisableTrigger($gg_trg_Obelisk2_Entrance)
+>action:1=DisableTrigger($gg_trg_Obelisk2_Exit)
+>action:1=DisableTrigger($gg_trg_Obelisk3_Entrance)
+>action:1=DisableTrigger($gg_trg_Obelisk3_Exit)
+>action:1=DisableTrigger($gg_trg_Obelisk4_Entrance)
+>action:1=DisableTrigger($gg_trg_Obelisk4_Exit)
+>action:1=TriggerSleepAction("1.00")
+>action:1=TriggerExecute($gg_trg_Cinematic_Teleporter)
+>condition:0=AndMultiple()
+>>condition:0=OperatorCompareBoolean($Obelisk_condition["1"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Obelisk_condition["2"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Obelisk_condition["3"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Obelisk_condition["4"], OperatorEqualENE, "true")

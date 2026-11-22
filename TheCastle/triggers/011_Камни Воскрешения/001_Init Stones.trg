@@ -1,0 +1,23 @@
+[trigger]
+name="Init Stones"
+description=""
+initially_off=1
+action=SetVariable($ResurrectionStones_num, "8")
+action=CommentString("Камни воскрешения")
+action=SetVariable($ResurrectionStone["1"], $gg_unit_nbsw_0094)
+action=SetVariable($ResurrectionStone["2"], $gg_unit_nbsw_0002)
+action=SetVariable($ResurrectionStone["3"], $gg_unit_nbsw_0059)
+action=SetVariable($ResurrectionStone["4"], $gg_unit_nbsw_0003)
+action=SetVariable($ResurrectionStone["5"], $gg_unit_nbse_0135)
+action=SetVariable($ResurrectionStone["6"], $gg_unit_nbsw_0123)
+action=SetVariable($ResurrectionStone["7"], $gg_unit_nbsw_0010)
+action=SetVariable($ResurrectionStone["8"], $gg_unit_nbsw_0549)
+action=CommentString("Области для воскрешения")
+action=SetVariable($ResurrectionCircle["1"], $gg_unit_ncop_0093)
+action=SetVariable($ResurrectionCircle["2"], $gg_unit_ncop_0026)
+action=SetVariable($ResurrectionCircle["3"], $gg_unit_ncop_0060)
+action=SetVariable($ResurrectionCircle["4"], $gg_unit_ncop_0117)
+action=SetVariable($ResurrectionCircle["5"], $gg_unit_ncop_0107)
+action=SetVariable($ResurrectionCircle["6"], $gg_unit_ncop_0136)
+action=SetVariable($ResurrectionCircle["7"], $gg_unit_ncop_0372)
+action=SetVariable($ResurrectionCircle["8"], $gg_unit_ncop_0550)

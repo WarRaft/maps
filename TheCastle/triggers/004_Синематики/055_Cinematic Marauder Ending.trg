@@ -1,0 +1,25 @@
+[trigger]
+name="Cinematic Marauder Ending"
+description=""
+initially_off=1
+action=CinematicFadeBJ(FadeTypeOptionFadeOut, "1.00", CineFilterTextureBlack, "0", "0", "0", "0")
+action=TriggerSleepAction("0.90")
+action=CommentString("Необходимые действия за кадром (звук, перемещение юнитов)")
+action=PauseAllUnitsBJ(PauseUnpauseOptionUnpause)
+action=VolumeGroupSetVolumeBJ(VolumeGroupSpells, "100.00")
+action=EnableTrigger($gg_trg_Z_coordinate_check)
+action=CameraSetSmoothingFactorBJ("0.30")
+action=UnitAddAbilityBJ("A043", $UNIT_Marauder)
+action=UnitAddAbilityBJ("Asid", $UNIT_Marauder)
+action=AddItemToStockBJ("I01P", $UNIT_Marauder, "1", "1")
+action=AddItemToStockBJ("I01R", $UNIT_Marauder, "1", "1")
+action=AddItemToStockBJ("I01Q", $UNIT_Marauder, "1", "1")
+action=AddItemToStockBJ("I01S", $UNIT_Marauder, "1", "1")
+action=AddItemToStockBJ("I01T", $UNIT_Marauder, "1", "1")
+action=AddItemToStockBJ("I01U", $UNIT_Marauder, "1", "1")
+action=CommentString("Выбор положения камеры")
+action=ForForceMultiple($Players)
+>action:0=CameraSetupApplyForPlayer(CameraApply, $gg_cam_CAM_Marauder3, GetEnumPlayer(), "0")
+action=CommentString("Ввод изображения")
+action=CinematicFadeBJ(FadeTypeOptionFadeIn, "0.60", CineFilterTextureBlack, "0", "0", "0", "0")
+action=CinematicModeExBJ(OnOffOff, GetPlayersAll(), "0.60")

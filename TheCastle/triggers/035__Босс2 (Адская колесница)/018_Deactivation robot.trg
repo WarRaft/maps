@@ -1,0 +1,20 @@
+[trigger]
+name="Deactivation robot"
+description=""
+initially_off=1
+action=DisableTrigger(GetTriggeringTrigger())
+action=SetVariable($Robot_Activation_Bool, "false")
+action=SetVariable($Hero_mechanic, $UNIT_Robot_Mechanic)
+action=SelectUnitForPlayerSingle($Hero_mechanic, GetOwningPlayer($Hero_mechanic))
+action=SetUnitOwner($UNIT_Robot, PlayerNP, ChangeColorTrue)
+action=UnitAddAbilityBJ("Avul", $UNIT_Robot)
+action=UnitRemoveAbilityBJ("A050", $UNIT_Robot)
+action=IfThenElseMultiple()
+>action:1=SetUnitAnimation($UNIT_Robot, "stand ready")
+>condition:0=OperatorCompareBoolean(IsUnitAliveBJ($UNIT_Robot), OperatorEqualENE, "true")
+action=TriggerSleepAction("0.60")
+action=IfThenElseMultiple()
+>action:1=SetUnitTimeScalePercent($UNIT_Robot, "0.00")
+>condition:0=OperatorCompareBoolean(IsUnitAliveBJ($UNIT_Robot), OperatorEqualENE, "true")
+condition=OperatorCompareUnit(GetTriggerUnit(), OperatorEqualENE, $UNIT_Robot_Mechanic)
+condition=OperatorCompareBoolean($Robot_Activation_Bool, OperatorEqualENE, "true")

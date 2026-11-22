@@ -1,0 +1,23 @@
+[trigger]
+name="Note Msg"
+description=""
+action=IfThenElseMultiple()
+>action:2=IfThenElseMultiple()
+>>action:1=DisableTrigger(GetTriggeringTrigger())
+>>action:2=QuestMessageBJ($Players, QuestMessageTypeAlwaysHint, OperatorString("|cff999797Найдено ", OperatorString(I2S($Note_count), OperatorString(" из ", OperatorString(I2S($Note_num), " записей.|r")))))
+>>action:2=QuestSetDescriptionBJ($Task_Notes, OperatorString("Зaмoк xpaнит в сeбe мнoгo тaйн. Ho иccлeдoвaв бoлee дeтaльнo eгo уголки, можно обнаружить записи, которые могут помочь в прохождении испытаний.|n|n", OperatorString("|cff999797Найдено ", OperatorString(I2S($Note_count), OperatorString(" из ", OperatorString(I2S($Note_num), " записей.|r"))))))
+>>action:1=CustomScriptCode("call QuestSetCompleted(udg_Task_Notes, true)")
+>>action:1=QuestMessageBJ($Players, QuestMessageTypeCompleted, "TRIGSTR_2534")
+>>action:1=QuestSetDescriptionBJ($Task_Notes, OperatorString("Зaмoк xpaнит в сeбe мнoгo тaйн. Ho иccлeдoвaв бoлee дeтaльнo eгo уголки, можно обнаружить записи, которые могут помочь в прохождении испытаний.|n|n", OperatorString("|cff999797Найдено ", OperatorString(I2S($Note_count), OperatorString(" из ", OperatorString(I2S($Note_num), " записей.|r"))))))
+>>action:1=SetHeroLevel($Hero_mechanic, OperatorInt(GetHeroLevel($Hero_mechanic), OperatorAdd, "1"), ShowHideShow)
+>>action:1=SetHeroLevel($Hero_shaman, OperatorInt(GetHeroLevel($Hero_shaman), OperatorAdd, "1"), ShowHideShow)
+>>action:1=SetHeroLevel($Hero_warrior, OperatorInt(GetHeroLevel($Hero_warrior), OperatorAdd, "1"), ShowHideShow)
+>>action:1=ForForceMultiple($Players)
+>>>action:0=SetPlayerAbilityAvailableBJ(EnableDisableEnable, "A05U", GetEnumPlayer())
+>>action:1=TriggerExecute($gg_trg_Help9)
+>>condition:0=OperatorCompareInteger($Note_count, OperatorEqual, $Note_num)
+>action:1=QuestSetDiscoveredBJ($Task_Notes, DiscoveredOptionDiscovered)
+>action:1=QuestMessageBJ($Players, QuestMessageTypeDiscovered, "TRIGSTR_2222")
+>action:1=QuestMessageBJ($Players, QuestMessageTypeAlwaysHint, OperatorString("|cff999797Найдено ", OperatorString(I2S($Note_count), OperatorString(" из ", OperatorString(I2S($Note_num), " записей.|r")))))
+>action:1=QuestSetDescriptionBJ($Task_Notes, OperatorString("Зaмoк xpaнит в сeбe мнoгo тaйн. Ho иccлeдoвaв бoлee дeтaльнo eгo уголки, можно обнаружить записи, которые могут помочь в прохождении испытаний.|n|n", OperatorString("|cff999797Найдено ", OperatorString(I2S($Note_count), OperatorString(" из ", OperatorString(I2S($Note_num), " записей.|r"))))))
+>condition:0=OperatorCompareInteger($Note_count, OperatorEqual, "1")

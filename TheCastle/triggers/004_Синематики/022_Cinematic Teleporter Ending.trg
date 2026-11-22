@@ -1,0 +1,21 @@
+[trigger]
+name="Cinematic Teleporter Ending"
+description=""
+initially_off=1
+action=CinematicFadeBJ(FadeTypeOptionFadeOut, "1.00", CineFilterTextureBlack, "0", "0", "0", "0")
+action=TriggerSleepAction("0.90")
+action=CommentString("Необходимые действия за кадром (звук, перемещение юнитов)")
+action=SetUnitAnimation($gg_unit_n022_0203, "stand")
+action=ForLoopBMultiple("1", "3")
+>action:0=SetUnitAnimation($Spatial_Cube[GetForLoopIndexB()], "stand")
+action=PauseAllUnitsBJ(PauseUnpauseOptionUnpause)
+action=VolumeGroupSetVolumeBJ(VolumeGroupSpells, "100.00")
+action=EnableTrigger($gg_trg_Z_coordinate_check)
+action=CameraSetSmoothingFactorBJ("0.30")
+action=TriggerSleepAction("0.10")
+action=CommentString("Выбор положения камеры")
+action=ForForceMultiple($Players)
+>action:0=CameraSetupApplyForPlayer(CameraApply, $gg_cam_CAM_Teleporter3, GetEnumPlayer(), "0")
+action=CommentString("Ввод изображения")
+action=CinematicFadeBJ(FadeTypeOptionFadeIn, "0.60", CineFilterTextureBlack, "0", "0", "0", "0")
+action=CinematicModeExBJ(OnOffOff, GetPlayersAll(), "0.60")
