@@ -1,5 +1,5 @@
 [trigger]
-name="Help1 Training"
+name="Шляпа непонятная"
 description=""
 initially_off=1
 action=DisableTrigger(GetTriggeringTrigger())
