@@ -1,0 +1,26 @@
+// What the extended GUI of the JNGP this map was made with adds to
+// UI\TriggerData.txt: common.j's natives the map's triggers call.
+
+[TriggerTypes]
+region=0,1,0,"Region (JASS)"
+
+[TriggerTypeDefaults]
+region=CreateRegion(),"New Region"
+
+[TriggerActions]
+RegionAddRect=0,region,rect
+_RegionAddRect_Defaults=_,GetPlayableMapRect
+_RegionAddRect_Category=TC_REGION
+
+EnumItemsInRect=0,rect,boolexpr,code
+_EnumItemsInRect_Defaults=GetPlayableMapRect,_,DoNothing
+_EnumItemsInRect_Category=TC_ITEM
+
+[TriggerCalls]
+CreateTimer=0,0,timer
+_CreateTimer_Defaults=
+_CreateTimer_Category=TC_TIMER
+
+CreateRegion=0,0,region
+_CreateRegion_Defaults=
+_CreateRegion_Category=TC_REGION

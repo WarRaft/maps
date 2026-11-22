@@ -1,0 +1,19 @@
+// The phrases of the functions TriggerData.patch.txt adds.
+
+[TriggerActionStrings]
+RegionAddRect="Add Rect To Region"
+RegionAddRect="Add to ",~Region," the rect ",~Rect
+RegionAddRectHint="Native RegionAddRect."
+
+EnumItemsInRect="Pick Items In Rect Matching Condition"
+EnumItemsInRect="Pick every item in ",~Rect," matching ",~Condition," and do ",~Actions
+EnumItemsInRectHint="Native EnumItemsInRect."
+
+[TriggerCallStrings]
+CreateTimer="Create Timer"
+CreateTimer="Create timer"
+CreateTimerHint="Native CreateTimer: a new timer."
+
+CreateRegion="Create Region"
+CreateRegion="Create region"
+CreateRegionHint="Native CreateRegion: a new, empty region."
