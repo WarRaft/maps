@@ -1,0 +1,19 @@
+[trigger]
+name="Khazra Trap"
+description=""
+condition=OrMultiple()
+>condition:0=OperatorComparePlayer(GetOwningPlayer(GetTriggerUnit()), OperatorEqualENE, Player00)
+>condition:0=OperatorComparePlayer(GetOwningPlayer(GetTriggerUnit()), OperatorEqualENE, Player01)
+>condition:0=OperatorComparePlayer(GetOwningPlayer(GetTriggerUnit()), OperatorEqualENE, Player02)
+>condition:0=OperatorComparePlayer(GetOwningPlayer(GetTriggerUnit()), OperatorEqualENE, Player03)
+>condition:0=OperatorComparePlayer(GetOwningPlayer(GetTriggerUnit()), OperatorEqualENE, Player04)
+>condition:0=OperatorComparePlayer(GetOwningPlayer(GetTriggerUnit()), OperatorEqualENE, Player05)
+action=DisableTrigger(GetTriggeringTrigger())
+action=CreateNUnitsAtLoc("6", "nsty", Player11, GetRectCenter($gg_rct_Rect_110), RealUnitFacing)
+action=ForGroupMultiple(GetUnitsInRectAll($gg_rct_Rect_109))
+>action:0=IssuePointOrderLoc(GetEnumUnit(), UnitOrderAttack, GetRectCenter($gg_rct_Rect_108))
+action=ForGroupMultiple(GetUnitsInRectAll($gg_rct_Rect_110))
+>action:0=IssuePointOrderLoc(GetEnumUnit(), UnitOrderAttack, GetRectCenter($gg_rct_Rect_108))
+action=TriggerSleepAction("2")
+action=DisplayTextToForce(GetPlayersAll(), "TRIGSTR_574")
+event=TriggerRegisterEnterRectSimple($gg_rct_Rect_108)

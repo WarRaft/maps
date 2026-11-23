@@ -1,0 +1,23 @@
+[trigger]
+name="Wizard Mana Recovery"
+description="// Wizard Mana recovery\r\n// May 21 2009\r\n// Ray Maloney\r\n\r\n// These Mana Systems are custom, and replace the default WC3 Mana recovery based on INT Score.\r\n// they will likely need adjustment in numbers, and may end up being tied into character stats instead of being\r\n// set numbers based on class.\r\n\r\n1. The Wizard Recovers Mana at a rate of 5 per 2 seconds."
+action=ForGroupMultiple(GetUnitsOfTypeIdAll("Hamg"))
+>action:0=IfThenElseMultiple()
+>>action:2=IfThenElseMultiple()
+>>>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("AHab", GetEnumUnit()), OperatorEqual, "1")
+>>>action:2=IfThenElseMultiple()
+>>>>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("AHab", GetEnumUnit()), OperatorEqual, "2")
+>>>>action:2=IfThenElseMultiple()
+>>>>>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("AHab", GetEnumUnit()), OperatorEqual, "3")
+>>>>>action:2=IfThenElseMultiple()
+>>>>>>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("AHab", GetEnumUnit()), OperatorEqual, "4")
+>>>>>>action:2=IfThenElseMultiple()
+>>>>>>>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("AHab", GetEnumUnit()), OperatorEqual, "5")
+>>>>>>>action:1=SetUnitManaBJ(GetEnumUnit(), OperatorReal(GetUnitStateSwap(UnitStateMana, GetEnumUnit()), OperatorAdd, "6.00"))
+>>>>>>action:1=SetUnitManaBJ(GetEnumUnit(), OperatorReal(GetUnitStateSwap(UnitStateMana, GetEnumUnit()), OperatorAdd, "5.00"))
+>>>>>action:1=SetUnitManaBJ(GetEnumUnit(), OperatorReal(GetUnitStateSwap(UnitStateMana, GetEnumUnit()), OperatorAdd, "4.00"))
+>>>>action:1=SetUnitManaBJ(GetEnumUnit(), OperatorReal(GetUnitStateSwap(UnitStateMana, GetEnumUnit()), OperatorAdd, "3.00"))
+>>>action:1=SetUnitManaBJ(GetEnumUnit(), OperatorReal(GetUnitStateSwap(UnitStateMana, GetEnumUnit()), OperatorAdd, "2.00"))
+>>action:1=SetUnitManaBJ(GetEnumUnit(), OperatorReal(GetUnitStateSwap(UnitStateMana, GetEnumUnit()), OperatorAdd, "1.00"))
+>>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("AHab", GetEnumUnit()), OperatorEqual, "0")
+event=TriggerRegisterTimerEventPeriodic("0.60")

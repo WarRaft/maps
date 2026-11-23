@@ -1,0 +1,20 @@
+[trigger]
+name="AutoAdjust"
+description="// Auto adjuster\r\n// June 3 2009\r\n// Ray Maloney\r\n\r\n1. If a player leaves the game, then it automatically adjusts the difficulty. This trigger is turned off if a player manually raises the difficulty\r\n\r\n#To Do: Incorporate dead players into the system, so that if a player is dead it adjusts, and if resurrected, adjusts back."
+action=SetVariable($TempInt, "0")
+action=ForLoopAMultiple("1", "6")
+>action:0=IfThenElseMultiple()
+>>action:2=IfThenElseMultiple()
+>>>action:1=SetPlayerState(ConvertedPlayer(GetForLoopIndexA()), PlayerStateLumber, "0")
+>>>condition:0=OperatorCompareInteger(GetPlayerState(ConvertedPlayer(GetForLoopIndexA()), PlayerStateLumber), OperatorEqual, "0")
+>>action:2=RemoveUnit($Heroes[GetForLoopIndexA()])
+>>condition:0=OperatorCompareBoolean($HeroIsRevivable[GetForLoopIndexA()], OperatorEqualENE, "true")
+>>action:1=SetVariable($TempInt, OperatorInt($TempInt, OperatorAdd, "1"))
+action=ConditionalTriggerExecute($BallanceLevel[$TempInt])
+action=DisplayTextToForce(GetPlayersAll(), OperatorString(OperatorString($Colour[GetConvertedPlayerId(GetTriggerPlayer())], OperatorString(GetPlayerName(GetTriggerPlayer()), GetPlayerName(GetOwningPlayer(GetTriggerUnit())))), " has left the game. Game Auto Balanced."))
+event=TriggerRegisterPlayerEventLeave(Player00)
+event=TriggerRegisterPlayerEventLeave(Player01)
+event=TriggerRegisterPlayerEventLeave(Player02)
+event=TriggerRegisterPlayerEventLeave(Player03)
+event=TriggerRegisterPlayerEventLeave(Player04)
+event=TriggerRegisterPlayerEventLeave(Player05)

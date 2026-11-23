@@ -1,0 +1,20 @@
+[trigger]
+name="BlockUnusableItems"
+description=""
+enabled=0
+action=SetVariable($TempBoolean, "true")
+>action:0=IfThenElseMultiple()
+>>condition:0=OperatorCompareBoolean($TempBoolean, OperatorEqualENE, "false")
+action=ForLoopAMultiple("1", "100")
+>action:0=IfThenElseMultiple()
+>>action:2=IfThenElseMultiple()
+>>>condition:0=OrMultiple()
+>>>>condition:0=OperatorCompareItemCode(GetItemTypeId(GetManipulatedItem()), OperatorEqualENE, $A_Belt_Item_Type[GetForLoopIndexA()])
+>>>>condition:0=OperatorCompareItemCode(GetItemTypeId(GetManipulatedItem()), OperatorEqualENE, $A_Boots_Item_Type[GetForLoopIndexA()])
+>>>>condition:0=OperatorCompareItemCode(GetItemTypeId(GetManipulatedItem()), OperatorEqualENE, $A_Gloves_Item_Type[GetForLoopIndexA()])
+>>>>condition:0=OperatorCompareItemCode(GetItemTypeId(GetManipulatedItem()), OperatorEqualENE, $A_Neckless_Item_Type[GetForLoopIndexA()])
+>>>>condition:0=OperatorCompareItemCode(GetItemTypeId(GetManipulatedItem()), OperatorEqualENE, $A_Ring_Item_Type[GetForLoopIndexB()])
+>>>action:1=SetVariable($TempBoolean, "false")
+>>>>action:0=IfThenElseMultiple()
+>>>>>condition:0=OperatorCompareBoolean($TempBoolean, OperatorEqualENE, "false")
+>>condition:0=OperatorCompareBoolean($TempBoolean, OperatorEqualENE, "false")

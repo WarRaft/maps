@@ -1,0 +1,21 @@
+[trigger]
+name="Dance"
+description=""
+action=IfThenElseMultiple()
+>action:1=SetUnitAnimation($Heroes[GetConvertedPlayerId(GetTriggerPlayer())], "Stand Victory")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId($Heroes[GetConvertedPlayerId(GetTriggerPlayer())]), OperatorEqualENE, "Otch")
+action=IfThenElseMultiple()
+>action:1=SetUnitAnimation($Heroes[GetConvertedPlayerId(GetTriggerPlayer())], "Stand Victory")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId($Heroes[GetConvertedPlayerId(GetTriggerPlayer())]), OperatorEqualENE, "Ulic")
+action=IfThenElseMultiple()
+>action:1=SetUnitAnimation($Heroes[GetConvertedPlayerId(GetTriggerPlayer())], "Spell")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId($Heroes[GetConvertedPlayerId(GetTriggerPlayer())]), OperatorEqualENE, "Hamg")
+action=IfThenElseMultiple()
+>action:1=SetUnitAnimation($Heroes[GetConvertedPlayerId(GetTriggerPlayer())], "STAND READY")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId($Heroes[GetConvertedPlayerId(GetTriggerPlayer())]), OperatorEqualENE, "O002")
+event=TriggerRegisterPlayerChatEvent(Player00, "-dance", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player01, "-dance", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player02, "-dance", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player03, "-dance", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player04, "-dance", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player05, "-dance", ChatMatchTypeExact)

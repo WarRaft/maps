@@ -1,0 +1,26 @@
+[trigger]
+name="Untitled Trigger 004"
+description=""
+enabled=0
+action=CommentString("Put this First")
+event=TriggerRegisterPlayerChatEvent(Player00, "cinematic", ChatMatchTypeExact)
+action=DisableTrigger($gg_trg_Inventory_Switch_Camera)
+action=ForLoopAMultiple("1", "6")
+>action:0=IfThenElseMultiple()
+>>action:1=SetVariable($DisablingDueCinematic[GetForLoopIndexA()], "true")
+>>action:1=SetVariable($Inventory_Player_Is_Viewing[GetForLoopIndexA()], "false")
+>>condition:0=OperatorCompareBoolean($Inventory_Player_Is_Viewing[GetForLoopIndexA()], OperatorEqualENE, "true")
+action=CommentString("Everything else here")
+action=CommentString("Everything else here")
+action=CommentString("Everything else here")
+action=TriggerSleepAction("10.00")
+action=CommentString("Everything else here")
+action=CommentString("Everything else here")
+action=CommentString("Everything else here")
+action=CommentString("Put this Last")
+action=ForLoopAMultiple("1", "6")
+>action:0=IfThenElseMultiple()
+>>action:1=SetVariable($DisablingDueCinematic[GetForLoopIndexA()], "false")
+>>action:1=SetVariable($Inventory_Player_Is_Viewing[GetForLoopIndexA()], "true")
+>>condition:0=OperatorCompareBoolean($DisablingDueCinematic[GetForLoopIndexA()], OperatorEqualENE, "true")
+action=EnableTrigger($gg_trg_Inventory_Switch_Camera)

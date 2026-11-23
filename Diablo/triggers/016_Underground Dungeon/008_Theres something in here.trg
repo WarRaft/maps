@@ -1,0 +1,23 @@
+[trigger]
+name="Theres something in here"
+description=""
+action=DisableTrigger(GetTriggeringTrigger())
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CameraSetEQNoiseForPlayer(GetEnumPlayer(), "8.00")
+action=PolledWait("0.50")
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CameraClearNoiseForPlayer(GetEnumPlayer())
+action=DisplayTextToForce(GetPlayersAll(), "TRIGSTR_564")
+action=PolledWait("1.00")
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CameraSetEQNoiseForPlayer(GetEnumPlayer(), "8.00")
+action=PolledWait("0.50")
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CameraClearNoiseForPlayer(GetEnumPlayer())
+action=PolledWait("1.00")
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CameraSetEQNoiseForPlayer(GetEnumPlayer(), "8.00")
+action=PolledWait("0.50")
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CameraClearNoiseForPlayer(GetEnumPlayer())
+event=TriggerRegisterEnterRectSimple($gg_rct_Rect_105)

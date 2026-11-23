@@ -1,0 +1,23 @@
+[trigger]
+name="Main Chamber Assault"
+description=""
+action=DisableTrigger(GetTriggeringTrigger())
+action=PlaySoundBJ($gg_snd_Cain)
+event=TriggerRegisterEnterRectSimple($gg_rct_Rect_014)
+action=CreateNUnitsAtLoc("16", "n000", Player11, GetRectCenter($gg_rct_Rect_011_Copy), RealUnitFacing)
+action=ForGroupMultiple(GetUnitsInRectAll($gg_rct_Rect_011_Copy))
+>action:0=IssuePointOrderLoc(GetEnumUnit(), UnitOrderAttack, GetRectCenter($gg_rct_Rect_008))
+action=CreateNUnitsAtLoc("16", "n000", Player11, GetRectCenter($gg_rct_Rect_011), RealUnitFacing)
+action=ForGroupMultiple(GetUnitsInRectAll($gg_rct_Rect_011))
+>action:0=IssuePointOrderLoc(GetEnumUnit(), UnitOrderAttack, GetRectCenter($gg_rct_Rect_008))
+action=PolledWait("3.00")
+action=PauseUnitBJ(PauseUnpauseOptionUnpause, $gg_unit_n00I_0097)
+action=PauseUnitBJ(PauseUnpauseOptionUnpause, $gg_unit_n00I_0096)
+action=PauseUnitBJ(PauseUnpauseOptionUnpause, $gg_unit_n00H_0095)
+action=PolledWait("2.00")
+action=IssuePointOrderLoc($gg_unit_n00I_0096, UnitOrderAttack, GetRectCenter($gg_rct_Rect_093))
+action=IssuePointOrderLoc($gg_unit_n00I_0097, UnitOrderAttack, GetRectCenter($gg_rct_Rect_093))
+action=IssuePointOrderLoc($gg_unit_n00H_0095, UnitOrderAttack, GetRectCenter($gg_rct_Rect_093))
+action=PolledWait("3.00")
+action=PolledWait("5.00")
+action=SetUnitAnimation($gg_unit_n002_0047, "death")

@@ -1,0 +1,21 @@
+[trigger]
+name="Team Death"
+description=""
+action=DisplayTimedTextToForce(GetPlayersAll(), "100000000.00", "TRIGSTR_6088")
+action=TriggerSleepAction("60.00")
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CustomVictoryBJ(GetEnumPlayer(), UseSkipOptionUse, UseSkipOptionUse)
+condition=AndMultiple()
+>condition:0=OrMultiple()
+>>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "Hamg")
+>>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "Otch")
+>>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "Ulic")
+>>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "O002")
+>condition:0=AndMultiple()
+>>condition:0=OperatorCompareBoolean($Revive["0"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Revive["1"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Revive["2"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Revive["3"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Revive["4"], OperatorEqualENE, "true")
+>>condition:0=OperatorCompareBoolean($Revive["5"], OperatorEqualENE, "true")
+event=TriggerRegisterAnyUnitEventBJ(PlayerUnitEventDeath)

@@ -1,0 +1,26 @@
+[trigger]
+name="Revive Hero On command"
+description=""
+enabled=0
+action=IfThenElseMultiple()
+>action:2=IfThenElseMultiple()
+>>action:1=DisplayTextToForce(GetForceOfPlayer(GetTriggerPlayer()), "TRIGSTR_5685")
+>>action:2=IfThenElseMultiple()
+>>>action:2=DisplayTextToForce(GetForceOfPlayer(GetTriggerPlayer()), "TRIGSTR_5686")
+>>>action:1=SetVariable($rect, $DeathLocations[GetConvertedPlayerId(GetTriggerPlayer())])
+>>>action:1=SetPlayerState(GetTriggerPlayer(), PlayerStateLumber, OperatorInt(GetPlayerState(GetTriggerPlayer(), PlayerStateLumber), OperatorSubtract, "1"))
+>>>action:1=ReviveHeroLoc($Heroes[GetConvertedPlayerId(GetTriggerPlayer())], $rect, ShowHideShow)
+>>>action:1=SetVariable($Revive[OperatorInt(GetConvertedPlayerId(GetTriggerPlayer()), OperatorSubtract, "1")], "false")
+>>>action:1=CustomScriptCode("call RemoveLocation(udg_rect)")
+>>>action:1=CustomScriptCode("set DEAD[IND[GetPlayerId(GetTriggerPlayer())]] = false")
+>>>action:1=SetVariable($Revive_Check, GetPlayerState(GetTriggerPlayer(), PlayerStateLumber))
+>>>condition:0=OperatorCompareInteger($Inventory_Revive_Count[GetConvertedPlayerId(GetTriggerPlayer())], OperatorGreater, "0")
+>>condition:0=OperatorCompareBoolean($ReviveAlreadyInUse[GetConvertedPlayerId(GetTriggerPlayer())], OperatorEqualENE, "true")
+>action:1=DisplayTextToForce(GetForceOfPlayer(GetTriggerPlayer()), "TRIGSTR_5687")
+>condition:0=OperatorCompareBoolean(IsUnitAliveBJ($Heroes[GetConvertedPlayerId(GetTriggerPlayer())]), OperatorEqualENE, "true")
+event=TriggerRegisterPlayerChatEvent(Player00, "-revive", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player01, "-revive", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player02, "-revive", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player03, "-revive", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player04, "-revive", ChatMatchTypeExact)
+event=TriggerRegisterPlayerChatEvent(Player05, "-revive", ChatMatchTypeExact)

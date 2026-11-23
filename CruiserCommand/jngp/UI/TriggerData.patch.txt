@@ -6,6 +6,8 @@ region=0,1,0,"Region (JASS)"
 
 [TriggerTypeDefaults]
 region=CreateRegion(),"New Region"
+// This editor makes a trigger for each trigger variable (its war3map.j).
+trigger=CreateTrigger()
 
 [TriggerActions]
 RegionAddRect=0,region,rect

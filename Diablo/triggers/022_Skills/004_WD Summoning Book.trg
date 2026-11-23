@@ -1,0 +1,21 @@
+[trigger]
+name="WD Summoning Book"
+description=""
+action=TriggerSleepAction("0.10")
+action=IfThenElseMultiple()
+>action:1=SetUnitAbilityLevelSwapped("A03W", GetTriggerUnit(), "1")
+>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("A03V", GetTriggerUnit()), OperatorEqual, "1")
+action=IfThenElseMultiple()
+>action:1=SetUnitAbilityLevelSwapped("A03W", GetTriggerUnit(), "2")
+>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("A03V", GetTriggerUnit()), OperatorEqual, "2")
+action=IfThenElseMultiple()
+>action:1=SetUnitAbilityLevelSwapped("A03W", GetTriggerUnit(), "3")
+>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("A03V", GetTriggerUnit()), OperatorEqual, "3")
+action=IfThenElseMultiple()
+>action:1=SetUnitAbilityLevelSwapped("A03W", GetTriggerUnit(), "4")
+>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("A03V", GetTriggerUnit()), OperatorEqual, "4")
+action=IfThenElseMultiple()
+>action:1=SetUnitAbilityLevelSwapped("A03W", GetTriggerUnit(), "5")
+>condition:0=OperatorCompareInteger(GetUnitAbilityLevelSwapped("A03V", GetTriggerUnit()), OperatorEqual, "5")
+condition=OperatorCompareHeroSkill(GetLearnedSkillBJ(), OperatorEqualENE, "A03V")
+event=TriggerRegisterAnyUnitEventBJ(PlayerUnitEventHero_Skill)

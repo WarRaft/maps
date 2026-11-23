@@ -1,0 +1,23 @@
+[trigger]
+name="TP Death"
+description=""
+action=UnitRemoveAbilityBJ("A04D", GetTriggerUnit())
+action=ModifyGateBJ(GateOperationOpen, $gg_dest_ITtg_1395)
+action=PlaySoundBJ($gg_snd_gates)
+action=ModifyGateBJ(GateOperationOpen, $gg_dest_LTg3_0659)
+action=DisplayTimedTextToForce(GetPlayersAll(), "8.00", "TRIGSTR_2468")
+action=AddSpecialEffectTargetUnitBJ("origin", $gg_unit_n004_0142, "war3mapImported\\BloodEX-Special-2.mdx")
+action=DestroyEffectBJ(GetLastCreatedEffectBJ())
+action=AddSpecialEffectTargetUnitBJ("origin", GetTriggerUnit(), "war3mapImported\\BloodEX-Special-2.mdx")
+action=DestroyEffectBJ(GetLastCreatedEffectBJ())
+action=EnableTrigger($gg_trg_Dungeon_Exit)
+action=DisableTrigger($gg_trg_Decaying_Room)
+action=DisableTrigger($gg_trg_Boss_Music)
+action=TriggerSleepAction("1.00")
+action=EndThematicMusicBJ()
+action=PlayThematicMusicBJ(MusicThemeHeroicVictory)
+action=ForForceMultiple(GetPlayersAll())
+>action:0=CameraClearNoiseForPlayer(GetEnumPlayer())
+action=ForLoopAMultiple("1", "6")
+>action:0=SetUnitColor($Heroes[GetForLoopIndexA()], GetPlayerColor(GetOwningPlayer($Heroes[GetForLoopIndexA()])))
+event=TriggerRegisterUnitEvent($gg_unit_n004_0142, UnitEventDeath)

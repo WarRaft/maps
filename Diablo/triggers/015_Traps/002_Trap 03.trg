@@ -1,0 +1,21 @@
+[trigger]
+name="Trap 03"
+description=""
+condition=OrMultiple()
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "Hamg")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "Otch")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "Ulic")
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "O002")
+event=TriggerRegisterEnterRectSimple($gg_rct_Region_216)
+action=DisableTrigger(GetTriggeringTrigger())
+action=SetVariable($FireRegion, $gg_rct_Region_216)
+action=AddSpecialEffectLocBJ(GetRectCenter($FireRegion), "Doodads\\Cinematic\\CavernDust\\CavernDust.mdl")
+action=SetVariable($RainOfFire, GetLastCreatedEffectBJ())
+action=TriggerSleepAction("1.00")
+action=AddSpecialEffectLocBJ(GetRectCenter($FireRegion), "Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl")
+action=SetVariable($rock_slide, GetLastCreatedEffectBJ())
+action=ForGroupMultiple(GetUnitsInRangeOfLocAll("250.00", OffsetLocation(GetRectCenter($FireRegion), "0", "0")))
+>action:0=SetUnitLifeBJ(GetEnumUnit(), OperatorReal(GetUnitStateSwap(UnitStateLife, GetEnumUnit()), OperatorSubtract, "200.00"))
+action=TriggerSleepAction("1.00")
+action=DestroyEffectBJ($RainOfFire)
+action=DestroyEffectBJ($rock_slide)

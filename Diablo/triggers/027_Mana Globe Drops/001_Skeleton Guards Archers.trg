@@ -1,0 +1,8 @@
+[trigger]
+name="Skeleton Guards Archers"
+description=""
+action=SetVariable($Random_Item_Drop, GetRandomInt("1", "3"))
+action=IfThenElse(condition:OperatorCompareInteger($Random_Item_Drop, OperatorEqual, "1") ~"", action:CreateItemLoc("I02A", GetUnitLoc(GetTriggerUnit())) ~"DoNothing", action:DoNothing())
+condition=OrMultiple()
+>condition:0=OperatorCompareUnitCode(GetUnitTypeId(GetTriggerUnit()), OperatorEqualENE, "n00N")
+event=TriggerRegisterAnyUnitEventBJ(PlayerUnitEventDeath)
