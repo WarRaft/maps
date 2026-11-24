@@ -3,3 +3,9 @@ game="/Volumes/TrascendSSD/Warcraft III/Warcraft III 1.26a Full (EN)"
 
 [code]
 sources=triggers/
+
+[map]
+root=Diablo-III-beta-Unprotected.w3x
+
+[build]
+name=debug
